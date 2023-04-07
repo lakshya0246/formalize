@@ -1,12 +1,7 @@
 import { DimensionalProperty, FormStyles } from '../../global-types/styles';
 import { TEMPLATE_A_BUTTON_1_ID, TEMPLATE_A_BUTTON_2_ID } from './a.constants';
 
-const DEFAULT_PADDING: DimensionalProperty = new DimensionalProperty(
-  20,
-  20,
-  5,
-  5
-);
+const DEFAULT_PADDING: DimensionalProperty = new DimensionalProperty(12);
 
 export const STYLE_TEMPLATE_A: FormStyles = {
   borderRadius: 5,
@@ -22,7 +17,6 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderWidth: 0,
         borderColor: '#007bff',
         fontSize: 16,
-        fontColor: '#fff',
         height: 40,
         padding: DEFAULT_PADDING,
       },
@@ -33,7 +27,6 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderWidth: 0,
         borderColor: '#0062cc',
         fontSize: 16,
-        fontColor: '#fff',
         height: 40,
         padding: DEFAULT_PADDING,
       },
@@ -44,7 +37,6 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderWidth: 0,
         borderColor: '#0062cc',
         fontSize: 16,
-        fontColor: '#fff',
         height: 40,
         padding: DEFAULT_PADDING,
       },
@@ -55,7 +47,6 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderWidth: 0,
         borderColor: '#005cbf',
         fontSize: 16,
-        fontColor: '#fff',
         height: 40,
         padding: DEFAULT_PADDING,
       },
@@ -69,7 +60,6 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderWidth: 0,
         borderColor: '#007bff',
         fontSize: 16,
-        fontColor: '#fff',
         height: 40,
         padding: DEFAULT_PADDING,
       },
@@ -80,7 +70,6 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderWidth: 0,
         borderColor: '#0062cc',
         fontSize: 16,
-        fontColor: '#fff',
         height: 40,
         padding: DEFAULT_PADDING,
       },
@@ -91,7 +80,6 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderWidth: 0,
         borderColor: '#0062cc',
         fontSize: 16,
-        fontColor: '#fff',
         height: 40,
         padding: DEFAULT_PADDING,
       },
@@ -102,7 +90,6 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderWidth: 0,
         borderColor: '#005cbf',
         fontSize: 16,
-        fontColor: '#fff',
         height: 40,
         padding: DEFAULT_PADDING,
       },
@@ -117,13 +104,16 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderWidth: 1,
       borderColor: '#CCCCCC',
       fontSize: 14,
-      fontColor: '#000000',
       height: 30,
       padding: DEFAULT_PADDING,
-      labelFontSize: 14,
-      labelFontColor: '#000000',
-      placeholderFontSize: 14,
-      placeholderFontColor: '#CCCCCC',
+      nsLabel: {
+        fontSize: 14,
+        color: '#000000',
+      },
+      nsPlaceholder: {
+        fontSize: 14,
+        color: 'orange',
+      },
     },
     hoverStyles: {
       width: '100%',
@@ -132,13 +122,16 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderWidth: 1,
       borderColor: '#CCCCCC',
       fontSize: 14,
-      fontColor: '#000000',
       height: 30,
       padding: DEFAULT_PADDING,
-      labelFontSize: 14,
-      labelFontColor: '#000000',
-      placeholderFontSize: 14,
-      placeholderFontColor: '#CCCCCC',
+      nsLabel: {
+        fontSize: 14,
+        color: '#000000',
+      },
+      nsPlaceholder: {
+        fontSize: 14,
+        color: '#CCCCCC',
+      },
     },
     focusStyles: {
       width: '100%',
@@ -147,13 +140,16 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderWidth: 1,
       borderColor: '#4C9AFF',
       fontSize: 14,
-      fontColor: '#000000',
       height: 30,
       padding: DEFAULT_PADDING,
-      labelFontSize: 14,
-      labelFontColor: '#4C9AFF',
-      placeholderFontSize: 14,
-      placeholderFontColor: '#CCCCCC',
+      nsLabel: {
+        fontSize: 14,
+        color: '#000000',
+      },
+      nsPlaceholder: {
+        fontSize: 14,
+        color: '#CCCCCC',
+      },
     },
     invalidStyles: {
       width: '100%',
@@ -162,13 +158,16 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderWidth: 1,
       borderColor: '#FF4C4C',
       fontSize: 14,
-      fontColor: '#000000',
       height: 30,
       padding: DEFAULT_PADDING,
-      labelFontSize: 14,
-      labelFontColor: '#FF4C4C',
-      placeholderFontSize: 14,
-      placeholderFontColor: '#CCCCCC',
+      nsLabel: {
+        fontSize: 14,
+        color: '#000000',
+      },
+      nsPlaceholder: {
+        fontSize: 14,
+        color: '#CCCCCC',
+      },
     },
     validStyles: {
       width: '100%',
@@ -177,13 +176,16 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderWidth: 1,
       borderColor: '#66FF66',
       fontSize: 14,
-      fontColor: '#000000',
       height: 30,
       padding: DEFAULT_PADDING,
-      labelFontSize: 14,
-      labelFontColor: '#66FF66',
-      placeholderFontSize: 14,
-      placeholderFontColor: '#CCCCCC',
+      nsLabel: {
+        fontSize: 14,
+        color: '#000000',
+      },
+      nsPlaceholder: {
+        fontSize: 14,
+        color: '#CCCCCC',
+      },
     },
   },
 };

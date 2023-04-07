@@ -26,6 +26,7 @@ export interface BaseFormField {
   label: string;
   type: FormFields;
   validationSchema: any;
+  placeholder?: string;
 }
 
 export interface TextField extends BaseFormField {

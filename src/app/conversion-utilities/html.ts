@@ -2,8 +2,7 @@ import { ButtonType, FormConfig, FormField, FormFields } from '../global-types';
 import {
   DimensionalProperty,
   FormStyles,
-  LabelProperties,
-  PlaceholderProperties,
+  NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP,
 } from '../global-types/styles';
 
 const CSS_CLASSES = {
@@ -15,9 +14,10 @@ const CSS_CLASSES = {
 
 export function convertToHTML(config: FormConfig): string {
   const fields = config.fields.map((field) => {
-    return `<div class='${CSS_CLASSES.INPUT_CONTAINER}'>${getInputHtml(
-      field
-    )}</div>`;
+    return `<div class='${CSS_CLASSES.INPUT_CONTAINER}'>
+    <label>${field.label}</label>
+    ${getInputHtml(field)}
+    </div>`;
   });
 
   const buttonHtml = `<div class="${
@@ -28,7 +28,29 @@ export function convertToHTML(config: FormConfig): string {
   )}</div>`;
 
   const stylesHtml = `<style>
-    .${CSS_CLASSES.INPUT_CONTAINER}{${getInputStyles(config.styles.input)}}
+    * {
+      box-sizing: border-box;
+    }
+
+    form .${CSS_CLASSES.INPUT_CONTAINER} {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    form .${CSS_CLASSES.INPUT_CONTAINER} label {
+      margin-bottom: 4px;
+    }
+    
+    .${CSS_CLASSES.INPUT_CONTAINER} > input {
+      ${getStandardInputCSSProperties(config.styles.input.defaultStyles)};
+      border-radius: ${config.styles.borderRadius}px;
+    }
+
+    ${getNonStandardInputCSSRules(
+      config.styles.input,
+      `.${CSS_CLASSES.INPUT_CONTAINER}`
+    )}
   </style>`;
 
   return `
@@ -56,6 +78,7 @@ function getButtonHtml(button: ButtonType): string {
  * @returns appropriate html for `field.type` default is input of type `text`
  */
 function getInputHtml(formField: FormField): string {
+  const placeholder = formField.placeholder || '';
   switch (formField.type) {
     case FormFields.SELECT: {
       const options = formField.options.map((option) => {
@@ -64,35 +87,29 @@ function getInputHtml(formField: FormField): string {
       return `<select>${options}</select>`;
     }
     case FormFields.EMAIL: {
-      return '<input type="email" />';
+      return `<input type="email" placeholder="${placeholder}" />`;
     }
     case FormFields.NUMBER: {
-      return '<input type="number" />';
+      return `<input type="number" placeholder="${placeholder}" />`;
     }
     case FormFields.PHONE: {
-      return '<input type="tel" />';
+      return `<input type="tel" placeholder="${placeholder}" />`;
     }
     case FormFields.TEXT:
     default: {
-      return `<input type='text' />`;
+      return `<input type='text' placeholder="${placeholder}"  />`;
     }
   }
 }
 
-const NON_STANDARD_PROPERTY_KEY_MAP: Record<
-  keyof PlaceholderProperties | keyof LabelProperties,
-  string
-> = {
-  labelFontColor: 'font-color',
-  labelFontSize: 'font-size',
-  placeholderFontColor: 'font-color',
-  placeholderFontSize: 'font-color',
-};
-
-function getInputStyles(styles: FormStyles['input']): string {
-  const css = Object.entries(styles.defaultStyles).reduce(
+// TODO: Make this function congruent with the `getNonStandardInputCSSRules`
+function getStandardInputCSSProperties(styles: object): string {
+  const css = Object.entries(styles).reduce(
     (stringifiedCSS, [propertyKey, propertyValue]) => {
       const sanitizedPropertyKey = sanitizePropertyKey(propertyKey);
+      if (isNonStandardPropertyKey(propertyKey)) {
+        return stringifiedCSS;
+      }
       const sanitizedPropertyValue = sanitizePropertyValue(propertyValue);
       return (
         stringifiedCSS + `\n${sanitizedPropertyKey}:${sanitizedPropertyValue};`
@@ -103,14 +120,43 @@ function getInputStyles(styles: FormStyles['input']): string {
   return css;
 }
 
+function getNonStandardInputCSSRules(
+  styles: FormStyles['input'],
+  selector: string
+): string {
+  const rules: Record<string, string> = {};
+  Object.entries(styles.defaultStyles).forEach(
+    ([propertyKey, propertyValue]) => {
+      if (isNonStandardPropertyKey(propertyKey)) {
+        const nsSelector = (NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP as any)[
+          propertyKey
+        ];
+        if (!rules[nsSelector]) {
+          rules[nsSelector] = '';
+        }
+        rules[nsSelector] = getStandardInputCSSProperties(propertyValue);
+      }
+    },
+    ''
+  );
+
+  return Object.entries(rules).reduce(
+    (stringifiedCssRules, [nsSelector, value]) =>
+      `${stringifiedCssRules}${selector}>${nsSelector}{${value}} \n`,
+    ''
+  );
+}
+
 export function parseHTML(html: string): FormConfig {
   throw new Error('function not implemented');
 }
 
-function sanitizePropertyKey(key: string): string {
-  return (NON_STANDARD_PROPERTY_KEY_MAP as any)[key]
-    ? (NON_STANDARD_PROPERTY_KEY_MAP as any)[key]
-    : convertToKebabCase(key);
+function isNonStandardPropertyKey(key: string): boolean {
+  return Boolean((NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP as any)[key]);
+}
+
+function sanitizePropertyKey(key: string): string | false {
+  return isNonStandardPropertyKey(key) ? false : convertToKebabCase(key);
 }
 
 function sanitizePropertyValue(value: any): string {

@@ -1,5 +1,8 @@
 /**
  * All property values are in `px` unless otherwise stated
+ * Any non-standard properties should follow the nomenclature - `ns<Namespace>`.
+ * Example - nsPlaceholder
+ * This helps in processing such properties predictably
  */
 export interface FormStyles {
   borderRadius: number;
@@ -33,25 +36,39 @@ export interface ButtonStylesWithState<T = ButtonStyles> {
 export type InputStyles = ColorProperties &
   BorderProperties &
   LayoutProperties &
-  FontProperties &
-  LabelProperties &
-  PlaceholderProperties;
+  FontProperties & {
+    nsLabel: LabelProperties;
+    nsPlaceholder: PlaceholderProperties;
+  };
 
 export type ButtonStyles = ColorProperties &
   BorderProperties &
   LayoutProperties &
   FontProperties;
 
+export const NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP: Record<
+  keyof Pick<InputStyles, 'nsLabel' | 'nsPlaceholder'>,
+  string
+> = {
+  nsLabel: 'label',
+  nsPlaceholder: 'input::placeholder',
+};
+
 export class DimensionalProperty<T = number> {
-  left: T;
-  right: T;
-  top: T;
-  bottom: T;
+  left!: T;
+  right!: T;
+  top!: T;
+  bottom!: T;
+  constructor(left: T, right?: T, top?: T, bottom?: T);
   constructor(left: T, right: T, top: T, bottom: T) {
-    this.left = left;
-    this.right = right;
-    this.top = top;
-    this.bottom = bottom;
+    if (right === undefined && top === undefined && bottom === undefined) {
+      this.setAll(left);
+    } else {
+      this.left = left;
+      this.right = right;
+      this.top = top;
+      this.bottom = bottom;
+    }
   }
   setAll(value: T) {
     this.left = value;
@@ -61,14 +78,17 @@ export class DimensionalProperty<T = number> {
   }
 }
 
+/**
+ * non-standard
+ */
 export interface PlaceholderProperties {
-  placeholderFontSize: number;
-  placeholderFontColor: string;
+  fontSize: number;
+  color: string;
 }
 
 export interface LabelProperties {
-  labelFontSize: number;
-  labelFontColor: string;
+  fontSize: number;
+  color: string;
 }
 
 export interface LayoutProperties {
@@ -80,7 +100,7 @@ export interface LayoutProperties {
 
 export interface FontProperties {
   fontSize: number;
-  fontColor: string;
+  color: string;
 }
 
 export interface BorderProperties {
