@@ -72,7 +72,8 @@ export interface LabelProperties {
 }
 
 export interface LayoutProperties {
-  isBlock?: boolean;
+  // TODO: Add support for any string and add validators for sanitizing valid css dimensions
+  width: number | '100%';
   height: number;
   padding: DimensionalProperty;
 }
@@ -89,5 +90,5 @@ export interface BorderProperties {
 
 export interface ColorProperties {
   backgroundColor: string;
-  textColor: string;
+  color: string;
 }

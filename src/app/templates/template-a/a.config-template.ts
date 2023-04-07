@@ -7,19 +7,19 @@ export const CONFIG_TEMPLATE_A: FormConfig = {
   fields: [
     {
       id: 'name',
-      title: 'Name',
+      label: 'Name',
       type: FormFields.TEXT,
       validationSchema: yup.string().required('Name is required'),
     },
     {
       id: 'email',
-      title: 'Email',
+      label: 'Email',
       type: FormFields.EMAIL,
       validationSchema: yup.string().required('Email is required'),
     },
     {
       id: 'phone',
-      title: 'Phone Number',
+      label: 'Phone Number',
       type: FormFields.PHONE,
       validationSchema: yup
         .string()
@@ -27,7 +27,7 @@ export const CONFIG_TEMPLATE_A: FormConfig = {
     },
     {
       id: 'age',
-      title: 'Age',
+      label: 'Age',
       type: FormFields.NUMBER,
       validationSchema: yup
         .number()
@@ -35,7 +35,7 @@ export const CONFIG_TEMPLATE_A: FormConfig = {
     },
     {
       id: 'country',
-      title: 'Country',
+      label: 'Country',
       type: FormFields.SELECT,
       validationSchema: yup.object().required('Please select a country'),
       options: [
@@ -57,12 +57,12 @@ export const CONFIG_TEMPLATE_A: FormConfig = {
   buttons: [
     {
       id: TEMPLATE_A_BUTTON_1_ID,
-      title: 'Submit',
+      label: 'Submit',
       type: 'submit',
     },
     {
       id: TEMPLATE_A_BUTTON_2_ID,
-      title: 'Cancel',
+      label: 'Cancel',
       type: 'button',
     },
   ],

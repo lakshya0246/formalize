@@ -23,7 +23,7 @@ export type FormField =
 
 export interface BaseFormField {
   id: string;
-  title: string;
+  label: string;
   type: FormFields;
   validationSchema: any;
 }
@@ -56,7 +56,7 @@ export interface PhoneField extends BaseFormField {
 
 export interface ButtonType {
   id: string;
-  title: string;
+  label: string;
   type: 'submit' | 'button';
   onClick?: (buttonConfig: ButtonType, event: MouseEvent) => void;
 }
