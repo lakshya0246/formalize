@@ -36,10 +36,14 @@ export interface ButtonStylesWithState<T = ButtonStyles> {
 export type InputStyles = ColorProperties &
   BorderProperties &
   LayoutProperties &
-  FontProperties & {
-    nsLabel: LabelProperties;
-    nsPlaceholder: PlaceholderProperties;
-  };
+  FontProperties &
+  NonStandardProperties;
+
+// TODO: Make ns property names strictly typed
+export interface NonStandardProperties {
+  nsLabel: LabelProperties;
+  nsPlaceholder: PlaceholderProperties;
+}
 
 export type ButtonStyles = ColorProperties &
   BorderProperties &
@@ -78,9 +82,6 @@ export class DimensionalProperty<T = number> {
   }
 }
 
-/**
- * non-standard
- */
 export interface PlaceholderProperties {
   fontSize: number;
   color: string;
