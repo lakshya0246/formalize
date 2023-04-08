@@ -1,8 +1,8 @@
 /**
- * All property values are in `px` unless otherwise stated
+ * All property values are in `px` unless otherwise stated.
  * Any non-standard properties should follow the nomenclature - `ns<Namespace>`.
- * Example - nsPlaceholder
- * This helps in processing such properties predictably
+ * For example - `nsPlaceholder`.
+ * This helps in processing such properties predictably.
  */
 export interface FormStyles {
   borderRadius: number;
