@@ -42,7 +42,8 @@ export function convertToHTML(config: FormConfig): string {
       margin-bottom: 4px;
     }
     
-    .${CSS_CLASSES.INPUT_CONTAINER} > input {
+    .${CSS_CLASSES.INPUT_CONTAINER} > input,
+    .${CSS_CLASSES.INPUT_CONTAINER} > select {
       ${getStandardInputCSSProperties(config.styles.input.defaultStyles)};
       border-radius: ${config.styles.borderRadius}px;
     }
