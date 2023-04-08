@@ -1,7 +1,7 @@
-import { DimensionalProperty, FormStyles } from '../../global-types/styles';
+import { SpacingProperty, FormStyles } from '../../global-types/styles';
 import { TEMPLATE_A_BUTTON_1_ID, TEMPLATE_A_BUTTON_2_ID } from './a.constants';
 
-const DEFAULT_PADDING: DimensionalProperty = new DimensionalProperty(12);
+const DEFAULT_PADDING: SpacingProperty = new SpacingProperty(12);
 
 export const STYLE_TEMPLATE_A: FormStyles = {
   borderRadius: 5,

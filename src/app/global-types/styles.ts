@@ -17,7 +17,6 @@ export interface FormStyles {
 }
 
 export interface InputStylesWithState<T = InputStyles> {
-  inputId: string;
   defaultStyles: T;
   hoverStyles: T;
   focusStyles: T;
@@ -58,7 +57,7 @@ export const NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP: Record<
   nsPlaceholder: 'input::placeholder',
 };
 
-export class DimensionalProperty<T = number> {
+export class SpacingProperty<T = number> {
   left!: T;
   right!: T;
   top!: T;
@@ -96,7 +95,7 @@ export interface LayoutProperties {
   // TODO: Add support for any string and add validators for sanitizing valid css dimensions
   width: number | '100%';
   height: number;
-  padding: DimensionalProperty;
+  padding: SpacingProperty;
 }
 
 export interface FontProperties {

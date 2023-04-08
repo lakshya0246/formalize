@@ -1,6 +1,6 @@
 import { ButtonType, FormConfig, FormField, FormFields } from '../global-types';
 import {
-  DimensionalProperty,
+  SpacingProperty,
   FormStyles,
   NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP,
 } from '../global-types/styles';
@@ -163,7 +163,7 @@ function sanitizePropertyKey(key: string): string | false {
 function sanitizePropertyValue(value: any): string {
   if (typeof value === 'number') {
     return `${value}px`;
-  } else if (value instanceof DimensionalProperty) {
+  } else if (value instanceof SpacingProperty) {
     return `${value.top}px ${value.right}px ${value.bottom}px ${value.left}px `;
   }
   return value;
