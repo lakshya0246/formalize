@@ -1,0 +1,36 @@
+<div *ngIf="editorService.formConfig$ | async as formConfig" class="tabs">
+  <button
+    class="tab"
+    [class.active]="activeTab === state"
+    (click)="activeTab = state"
+    *ngFor="let state of editorConstants.INPUT_STATES"
+  >
+    {{ state }}
+  </button>
+
+  <div
+    *ngFor="
+      let entry of formConfig.styles.input[activeTab] | keyvalue;
+      trackBy: editorTrackBy
+    "
+  >
+    <div [ngSwitch]="editorConstants.STYLE_FIELD_INPUT_MAP[entry.key]">
+      <div *ngSwitchCase="editorConstants.STYLE_INPUTS.COLOR">
+        {{ editorConstants.STYLE_INPUTS.COLOR }} {{ entry.key }}
+      </div>
+      <div *ngSwitchCase="editorConstants.STYLE_INPUTS.UNIT">
+        <!-- TODO: Add type inference -->
+        <fl-unit-editor
+          (valueChange)="onInputValueChange(entry.key, $event)"
+          [value]="entry.value"
+        ></fl-unit-editor>
+      </div>
+      <div *ngSwitchCase="editorConstants.STYLE_INPUTS.SPACING">
+        {{ editorConstants.STYLE_INPUTS.SPACING }} {{ entry.key }}
+      </div>
+      <div *ngSwitchDefault>
+        Default: {{ entry.key }} | {{ entry.value | json }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,7 @@
-<p>editor works!</p>
+<p>HTML</p>
+<div [innerHTML]="html"></div>
+<fl-style-editor></fl-style-editor>
+
+<div *ngIf="editorService.formConfig$ | async as formConfig">
+  {{ formConfig.styles.input.default | json }}
+</div>
