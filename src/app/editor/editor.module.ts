@@ -6,6 +6,7 @@ import { EditorService } from './editor.service';
 import { RestrictInputDirective } from './restrict-input.directive';
 import { StyleEditorComponent } from './style-editor/style-editor.component';
 import { UnitEditorComponent } from './style-editor/unit-editor/unit-editor.component';
+import { ColorEditorComponent } from './style-editor/color-editor/color-editor.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { UnitEditorComponent } from './style-editor/unit-editor/unit-editor.comp
     StyleEditorComponent,
     UnitEditorComponent,
     RestrictInputDirective,
+    ColorEditorComponent,
   ],
   imports: [CommonModule],
   exports: [EditorComponent],

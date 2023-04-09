@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import {
   ButtonStylesWithState,
   InputStylesWithState,
@@ -10,4 +11,9 @@ export enum StyleInputs {
   UNIT = 'UNIT',
   SPACING = 'SPACING',
   COLOR = 'COLOR',
+}
+
+export interface StyleEditor<T = any> {
+  value: T;
+  valueChange: EventEmitter<T>;
 }

@@ -16,7 +16,10 @@
   >
     <div [ngSwitch]="editorConstants.STYLE_FIELD_INPUT_MAP[entry.key]">
       <div *ngSwitchCase="editorConstants.STYLE_INPUTS.COLOR">
-        {{ editorConstants.STYLE_INPUTS.COLOR }} {{ entry.key }}
+        <fl-color-editor
+          (valueChange)="onInputValueChange(entry.key, $event)"
+          [value]="entry.value"
+        ></fl-color-editor>
       </div>
       <div *ngSwitchCase="editorConstants.STYLE_INPUTS.UNIT">
         <!-- TODO: Add type inference -->
