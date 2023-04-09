@@ -44,7 +44,7 @@ export function convertToHTML(config: FormConfig): string {
     
     .${CSS_CLASSES.INPUT_CONTAINER} > input,
     .${CSS_CLASSES.INPUT_CONTAINER} > select {
-      ${getStandardInputCSSProperties(config.styles.input.defaultStyles)};
+      ${getStandardInputCSSProperties(config.styles.input.default)};
       border-radius: ${config.styles.borderRadius}px;
     }
 
@@ -126,20 +126,17 @@ function getNonStandardInputCSSRules(
   selector: string
 ): string {
   const rules: Record<string, string> = {};
-  Object.entries(styles.defaultStyles).forEach(
-    ([propertyKey, propertyValue]) => {
-      if (isNonStandardPropertyKey(propertyKey)) {
-        const nsSelector = (NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP as any)[
-          propertyKey
-        ];
-        if (!rules[nsSelector]) {
-          rules[nsSelector] = '';
-        }
-        rules[nsSelector] = getStandardInputCSSProperties(propertyValue);
+  Object.entries(styles.default).forEach(([propertyKey, propertyValue]) => {
+    if (isNonStandardPropertyKey(propertyKey)) {
+      const nsSelector = (NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP as any)[
+        propertyKey
+      ];
+      if (!rules[nsSelector]) {
+        rules[nsSelector] = '';
       }
-    },
-    ''
-  );
+      rules[nsSelector] = getStandardInputCSSProperties(propertyValue);
+    }
+  }, '');
 
   return Object.entries(rules).reduce(
     (stringifiedCssRules, [nsSelector, value]) =>

@@ -17,19 +17,19 @@ export interface FormStyles {
 }
 
 export interface InputStylesWithState<T = InputStyles> {
-  defaultStyles: T;
-  hoverStyles: T;
-  focusStyles: T;
-  invalidStyles: T;
-  validStyles: T;
+  default: T;
+  hover: T;
+  focus: T;
+  invalid: T;
+  valid: T;
 }
 
 export interface ButtonStylesWithState<T = ButtonStyles> {
   buttonId: string;
-  defaultStyles: T;
-  hoverStyles: T;
-  focusStyles: T;
-  activeStyles: T;
+  default: T;
+  hover: T;
+  focus: T;
+  active: T;
 }
 
 export type InputStyles = ColorProperties &

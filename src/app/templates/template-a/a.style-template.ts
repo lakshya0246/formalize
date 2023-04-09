@@ -10,7 +10,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
   buttons: [
     {
       buttonId: TEMPLATE_A_BUTTON_1_ID,
-      defaultStyles: {
+      default: {
         width: '100%',
         backgroundColor: '#007bff',
         color: '#fff',
@@ -20,7 +20,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         height: 40,
         padding: DEFAULT_PADDING,
       },
-      hoverStyles: {
+      hover: {
         width: '100%',
         backgroundColor: '#0069d9',
         color: '#fff',
@@ -30,7 +30,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         height: 40,
         padding: DEFAULT_PADDING,
       },
-      focusStyles: {
+      focus: {
         width: '100%',
         backgroundColor: '#0069d9',
         color: '#fff',
@@ -40,7 +40,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         height: 40,
         padding: DEFAULT_PADDING,
       },
-      activeStyles: {
+      active: {
         width: '100%',
         backgroundColor: '#0062cc',
         color: '#fff',
@@ -53,7 +53,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
     },
     {
       buttonId: TEMPLATE_A_BUTTON_2_ID,
-      defaultStyles: {
+      default: {
         width: '100%',
         backgroundColor: '#007bff',
         color: '#fff',
@@ -63,7 +63,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         height: 40,
         padding: DEFAULT_PADDING,
       },
-      hoverStyles: {
+      hover: {
         width: '100%',
         backgroundColor: '#0069d9',
         color: '#fff',
@@ -73,7 +73,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         height: 40,
         padding: DEFAULT_PADDING,
       },
-      focusStyles: {
+      focus: {
         width: '100%',
         backgroundColor: '#0069d9',
         color: '#fff',
@@ -83,7 +83,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         height: 40,
         padding: DEFAULT_PADDING,
       },
-      activeStyles: {
+      active: {
         width: '100%',
         backgroundColor: '#0062cc',
         color: '#fff',
@@ -96,8 +96,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
     },
   ],
   input: {
-    inputId: 'first-name',
-    defaultStyles: {
+    default: {
       width: '100%',
       backgroundColor: '#FFFFFF',
       color: '#000000',
@@ -115,7 +114,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         color: 'orange',
       },
     },
-    hoverStyles: {
+    hover: {
       width: '100%',
       backgroundColor: '#F0F0F0',
       color: '#000000',
@@ -133,7 +132,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         color: '#CCCCCC',
       },
     },
-    focusStyles: {
+    focus: {
       width: '100%',
       backgroundColor: '#FFFFFF',
       color: '#000000',
@@ -151,7 +150,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         color: '#CCCCCC',
       },
     },
-    invalidStyles: {
+    invalid: {
       width: '100%',
       backgroundColor: '#FFFFFF',
       color: '#000000',
@@ -169,7 +168,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         color: '#CCCCCC',
       },
     },
-    validStyles: {
+    valid: {
       width: '100%',
       backgroundColor: '#FFFFFF',
       color: '#000000',
