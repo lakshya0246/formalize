@@ -1,9 +1,9 @@
-import { InputStyles } from '../global-types/styles';
 import {
+  InputStyles,
   KeyOfButtonStylesWithState,
   KeyOfInputStylesWithState,
-  StyleInputs,
-} from './editor.types';
+} from '../global-types/styles';
+import { StyleInputs } from './editor.types';
 
 export const INPUT_STATES: Array<KeyOfInputStylesWithState> = [
   'default',

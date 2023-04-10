@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { EditorConstants } from '../editor-constants.service';
-import { EditorService } from '../editor.service';
 import {
   KeyOfButtonStyles,
   KeyOfButtonStylesWithState,
+  KeyOfInputStyles,
   KeyOfInputStylesWithState,
-} from '../editor.types';
+} from 'src/app/global-types/styles';
 import { EditorCommands } from '../commands.types';
-import { InputStyles } from 'src/app/global-types/styles';
+import { EditorConstants } from '../editor-constants.service';
+import { EditorService } from '../editor.service';
+import { StyleEditorProperty } from '../editor.types';
 
 @Component({
   selector: 'fl-style-editor',
@@ -23,7 +24,7 @@ export class StyleEditorComponent {
     public editorConstants: EditorConstants
   ) {}
 
-  onInputValueChange(propertyKey: keyof InputStyles, value: any) {
+  onInputValueChange(propertyKey: StyleEditorProperty['key'], value: any) {
     this.editorService.processCommand({
       type: EditorCommands.UPDATE_INPUT_STYLE_FIELD_VALUE,
       payload: { inputState: this.activeTab, propertyKey, value },
@@ -34,7 +35,8 @@ export class StyleEditorComponent {
     return this.activeButtonTabs[buttonIndex] || 'default';
   }
 
-  onButtonValueChange(propertyKey: any, value: any, buttonIndex: number) {
+  // TODO: Fix types
+  onUnsafeButtonValueChange(propertyKey: any, value: any, buttonIndex: number) {
     this.editorService.processCommand({
       type: EditorCommands.UPDATE_BUTTON_STYLE_FIELD_VALUE,
       payload: {

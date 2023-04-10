@@ -1,4 +1,4 @@
-import { FormConfig, FormFields } from 'src/app/global-types';
+import { FormConfig, FormFields } from 'src/app/global-types/config';
 import { STYLE_TEMPLATE_A } from './a.style-template';
 import { TEMPLATE_A_BUTTON_1_ID, TEMPLATE_A_BUTTON_2_ID } from './a.constants';
 import * as yup from 'yup';

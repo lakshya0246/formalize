@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject, startWith } from 'rxjs';
 import { CONFIG_TEMPLATE_A } from '../templates';
-import { FormConfig } from '../global-types';
+import { FormConfig } from '../global-types/config';
 import { processCommand } from './commands.processor';
 
 @Injectable()

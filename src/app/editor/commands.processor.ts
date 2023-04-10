@@ -1,11 +1,13 @@
-import { FormConfig, FormField } from '../global-types';
-import { ButtonStyles, InputStyles } from '../global-types/styles';
-import { CommandBuilder, EditorCommands } from './commands.types';
+import { FormConfig, FormField } from '../global-types/config';
 import {
+  KeyOfButtonStyles,
   KeyOfButtonStylesWithState,
+  KeyOfInputStyles,
   KeyOfInputStylesWithState,
   ValueOfButtonStyles,
-} from './editor.types';
+} from '../global-types/styles';
+import { CommandBuilder, EditorCommands } from './commands.types';
+import {} from './editor.types';
 
 /**
  * Shies away from deep cloning to avoid unnecessary re-renders
@@ -23,7 +25,7 @@ export const processCommand = new CommandBuilder()
     type: EditorCommands.UPDATE_INPUT_STYLE_FIELD_VALUE;
     payload: {
       inputState: KeyOfInputStylesWithState;
-      propertyKey: keyof InputStyles;
+      propertyKey: KeyOfInputStyles;
       value: any;
     };
   }>()
@@ -32,7 +34,7 @@ export const processCommand = new CommandBuilder()
     payload: {
       buttonIndex: number;
       buttonState: KeyOfButtonStylesWithState;
-      propertyKey: keyof ButtonStyles;
+      propertyKey: KeyOfButtonStyles;
       value: ValueOfButtonStyles;
     };
   }>()

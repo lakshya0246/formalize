@@ -16,7 +16,7 @@ INPUT STYLE EDITOR
     "
   >
     <fl-single-style-editor
-      (valueChange)="onInputValueChange($event.propertyKey, $event.value)"
+      (valueChange)="onInputValueChange($event.key, $event.value)"
       [styleProperty]="entry"
     ></fl-single-style-editor>
   </ng-container>
@@ -42,9 +42,8 @@ INPUT STYLE EDITOR
         trackBy: editorTrackBy
       "
     >
-      <!-- {{ entry | json }} -->
       <fl-single-style-editor
-        (valueChange)="onButtonValueChange($event.propertyKey, $event.value, i)"
+        (valueChange)="onUnsafeButtonValueChange($event.key, $event.value, i)"
         [styleProperty]="entry"
       ></fl-single-style-editor>
     </div>

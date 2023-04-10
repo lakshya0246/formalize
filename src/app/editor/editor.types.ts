@@ -1,26 +1,12 @@
 import { EventEmitter } from '@angular/core';
 import {
-  ButtonStyles,
-  ButtonStylesWithState,
-  InputStyles,
-  InputStylesWithState,
+  KeyOfButtonStyles,
+  KeyOfInputStyles,
+  NonStandardKeyOfInputStyles,
+  NonStandardValueOfInputStyles,
+  ValueOfButtonStyles,
+  ValueOfInputStyles,
 } from '../global-types/styles';
-
-// TODO: Move to `styles.ts`
-export type KeyOfInputStylesWithState = keyof InputStylesWithState;
-export type KeyOfInputStyles = keyof InputStyles;
-export type KeyOfButtonStyles = keyof ButtonStyles;
-export type NonStandardKeyOfInputStyles = keyof Pick<
-  InputStyles,
-  'nsLabel' | 'nsPlaceholder'
->;
-export type NonStandardValueOfInputStyles = Pick<
-  InputStyles,
-  'nsLabel' | 'nsPlaceholder'
->[NonStandardKeyOfInputStyles];
-export type ValueOfInputStyles = InputStyles[KeyOfInputStyles];
-export type ValueOfButtonStyles = ButtonStyles[KeyOfButtonStyles];
-export type KeyOfButtonStylesWithState = keyof ButtonStylesWithState;
 
 export enum StyleInputs {
   UNIT = 'UNIT',
@@ -32,3 +18,22 @@ export interface StyleEditor<T = any> {
   value: T;
   valueChange: EventEmitter<T>;
 }
+
+export type InputStyleEditorProperty = {
+  key: KeyOfInputStyles;
+  value: ValueOfInputStyles;
+};
+
+export type NonStandardInputStyleEditorProperty = {
+  key: NonStandardKeyOfInputStyles;
+  value: NonStandardValueOfInputStyles;
+};
+
+export type ButtonStyleEditorProperty = {
+  key: KeyOfButtonStyles;
+  value: ValueOfButtonStyles;
+};
+
+export type StyleEditorProperty =
+  | InputStyleEditorProperty
+  | ButtonStyleEditorProperty;

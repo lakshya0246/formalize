@@ -5,20 +5,20 @@
 >
   <ng-container *ngSwitchCase="editorConstants.STYLE_INPUTS.COLOR">
     <fl-color-editor
-      (valueChange)="onInputValueChange(styleProperty.key, $event)"
+      (valueChange)="onValueChange(styleProperty.key, $event)"
       [value]="styleProperty.value"
     ></fl-color-editor>
   </ng-container>
   <ng-container *ngSwitchCase="editorConstants.STYLE_INPUTS.UNIT">
     <fl-unit-editor
-      (valueChange)="onInputValueChange(styleProperty.key, $event)"
+      (valueChange)="onValueChange(styleProperty.key, $event)"
       [value]="styleProperty.value"
     ></fl-unit-editor>
   </ng-container>
   <ng-container *ngSwitchCase="editorConstants.STYLE_INPUTS.SPACING">
     {{ styleProperty.key }}
     <fl-spacing-editor
-      (valueChange)="onInputValueChange(styleProperty.key, $event)"
+      (valueChange)="onValueChange(styleProperty.key, $event)"
       [value]="styleProperty.value"
     ></fl-spacing-editor>
   </ng-container>
@@ -30,8 +30,8 @@
         trackBy: editorTrackBy
       "
       (valueChange)="
-        onInputValueChange(
-          $event.propertyKey,
+        onValueChange(
+          $event.key,
           $event.value,
           assertAsNonStandardInputStyleEntry(styleProperty)
         )

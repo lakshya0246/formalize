@@ -110,3 +110,18 @@ export interface ColorProperties {
   backgroundColor: string;
   color: string;
 }
+
+export type KeyOfInputStylesWithState = keyof InputStylesWithState;
+export type KeyOfInputStyles = keyof InputStyles;
+export type KeyOfButtonStyles = keyof ButtonStyles;
+export type NonStandardKeyOfInputStyles = keyof Pick<
+  InputStyles,
+  'nsLabel' | 'nsPlaceholder'
+>;
+export type NonStandardValueOfInputStyles = Pick<
+  InputStyles,
+  'nsLabel' | 'nsPlaceholder'
+>[NonStandardKeyOfInputStyles];
+export type ValueOfInputStyles = InputStyles[KeyOfInputStyles];
+export type ValueOfButtonStyles = ButtonStyles[KeyOfButtonStyles];
+export type KeyOfButtonStylesWithState = keyof ButtonStylesWithState;

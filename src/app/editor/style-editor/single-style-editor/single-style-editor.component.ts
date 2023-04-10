@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EditorConstants } from '../../editor-constants.service';
 import {
-  KeyOfInputStyles,
-  NonStandardKeyOfInputStyles,
-  NonStandardValueOfInputStyles,
-  ValueOfInputStyles,
+  NonStandardInputStyleEditorProperty,
+  StyleEditorProperty,
 } from '../../editor.types';
 
 @Component({
@@ -13,36 +11,28 @@ import {
   styleUrls: ['./single-style-editor.component.scss'],
 })
 export class SingleStyleEditorComponent {
-  @Input() styleProperty!: {
-    key: KeyOfInputStyles;
-    value: ValueOfInputStyles;
-  };
+  @Input() styleProperty!: StyleEditorProperty;
 
-  @Output() valueChange = new EventEmitter<{
-    propertyKey: KeyOfInputStyles;
-    value: ValueOfInputStyles;
-  }>();
+  @Output() valueChange = new EventEmitter<StyleEditorProperty>();
 
   constructor(public editorConstants: EditorConstants) {}
 
-  onInputValueChange(
-    propertyKey: KeyOfInputStyles,
-    value: ValueOfInputStyles,
-    nonStandardParentStyleProperty?: ReturnType<
-      typeof this.assertAsNonStandardInputStyleEntry
-    >
+  onValueChange(
+    key: StyleEditorProperty['key'],
+    value: StyleEditorProperty['value'],
+    nonStandardParentStyleProperty?: NonStandardInputStyleEditorProperty
   ) {
     if (nonStandardParentStyleProperty) {
       const newStylePropertyValue = {
         ...nonStandardParentStyleProperty.value,
-        [propertyKey]: value,
+        [key]: value,
       };
       this.valueChange.emit({
-        propertyKey: nonStandardParentStyleProperty.key,
+        key: nonStandardParentStyleProperty.key,
         value: newStylePropertyValue,
       });
     } else {
-      this.valueChange.emit({ propertyKey, value });
+      this.valueChange.emit({ key, value });
     }
   }
 
@@ -52,9 +42,6 @@ export class SingleStyleEditorComponent {
 
   // TODO: Find a better solution
   assertAsNonStandardInputStyleEntry(value: any) {
-    return value as {
-      key: NonStandardKeyOfInputStyles;
-      value: NonStandardValueOfInputStyles;
-    };
+    return value as NonStandardInputStyleEditorProperty;
   }
 }
