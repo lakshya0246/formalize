@@ -4,7 +4,10 @@ import { environment } from 'src/environments/environment';
 import { UserFacingErrorTypes } from '../global-types/errors';
 import { FailureResponse } from './generator.types';
 import { PromptTemplate } from './prompt.types';
-import { PROMPT_TEMPLATE_1, PROMPT_TEMPLATE_2 } from './prompts.constants';
+import {
+  PROMPT_TEMPLATE_FORM_FIELD,
+  PROMPT_TEMPLATE_SELECT_OPTION,
+} from './prompts.constants';
 import {
   sanitizeParsedFormFieldArray,
   sanitizeParsedSelectOptionArray,
@@ -28,7 +31,10 @@ export class GeneratorService {
   async generateFormConfig(
     prompt: string
   ): Promise<FailureResponse | FormField[]> {
-    const response = await this.getCompletion(prompt, PROMPT_TEMPLATE_1);
+    const response = await this.getCompletion(
+      prompt,
+      PROMPT_TEMPLATE_FORM_FIELD
+    );
     if (!(response instanceof FailureResponse)) {
       try {
         const parsed = JSON.parse(response || '[]');
@@ -47,7 +53,10 @@ export class GeneratorService {
   async generateSelectOptions(
     prompt: string
   ): Promise<FailureResponse | SelectOption[]> {
-    const response = await this.getCompletion(prompt, PROMPT_TEMPLATE_2);
+    const response = await this.getCompletion(
+      prompt,
+      PROMPT_TEMPLATE_SELECT_OPTION
+    );
     if (!(response instanceof FailureResponse)) {
       try {
         const parsed = JSON.parse(response || '[]');

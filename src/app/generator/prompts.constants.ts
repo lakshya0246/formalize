@@ -1,6 +1,6 @@
 import { PromptTemplate } from './prompt.types';
 
-export const PROMPT_TEMPLATE_1: PromptTemplate = {
+export const PROMPT_TEMPLATE_FORM_FIELD: PromptTemplate = {
   context: `
           enum FormFields {
               TEXT = 'TEXT',
@@ -27,7 +27,7 @@ export const PROMPT_TEMPLATE_1: PromptTemplate = {
   },
 };
 
-export const PROMPT_TEMPLATE_2: PromptTemplate = {
+export const PROMPT_TEMPLATE_SELECT_OPTION: PromptTemplate = {
   context: `
         type SelectOption = {label: string; value: number | string}[];
     `,
