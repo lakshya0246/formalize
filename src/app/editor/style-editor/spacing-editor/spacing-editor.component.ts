@@ -9,6 +9,7 @@ import { SpacingProperty } from 'src/app/global-types/styles';
 })
 export class SpacingEditorComponent implements Editor<SpacingProperty> {
   // TODO: Add check for verifying if instance of SpacingProperty
+  @Input() propertyName: string = '';
   @Input() value!: any;
   @Output() valueChange = new EventEmitter<SpacingProperty>();
   readonly INPUTS: Array<keyof SpacingProperty> = [

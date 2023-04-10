@@ -28,3 +28,10 @@
     border-color: var(--color-primary);
   }
 }
+
+.property-input-grid {
+  padding: 16px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}

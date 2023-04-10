@@ -11,6 +11,7 @@ import {
   styleUrls: ['./single-style-editor.component.scss'],
 })
 export class SingleStyleEditorComponent {
+  @Input() label!: string;
   @Input() styleProperty!: StyleEditorProperty;
 
   @Output() valueChange = new EventEmitter<StyleEditorProperty>();

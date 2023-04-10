@@ -1,0 +1,34 @@
+@import "../../../../styles/inputs.scss";
+
+input[type="color"] {
+  opacity: 0;
+  visibility: collapse;
+  height: 0;
+}
+
+.pseudo-input {
+  display: flex;
+  @include normalize-inputs();
+  border-radius: 50px;
+  height: 26px;
+  align-items: center;
+  padding: 0 5px;
+  margin-bottom: -8px;
+
+  .color-swatch {
+    margin-right: 6px;
+  }
+}
+
+.color-value {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.color-swatch {
+  border: 1px solid gainsboro;
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+}

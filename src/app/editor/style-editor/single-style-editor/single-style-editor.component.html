@@ -1,29 +1,34 @@
------
-{{ styleProperty.key }}
 <ng-container
   [ngSwitch]="editorConstants.STYLE_FIELD_INPUT_MAP[styleProperty.key]"
 >
   <ng-container *ngSwitchCase="editorConstants.STYLE_INPUTS.COLOR">
-    <fl-color-editor
-      (valueChange)="onValueChange(styleProperty.key, $event)"
-      [value]="styleProperty.value"
-    ></fl-color-editor>
+    <div class="input-container">
+      <label>{{ label || styleProperty.key }}</label>
+      <fl-color-editor
+        (valueChange)="onValueChange(styleProperty.key, $event)"
+        [value]="styleProperty.value"
+      ></fl-color-editor>
+    </div>
   </ng-container>
   <ng-container *ngSwitchCase="editorConstants.STYLE_INPUTS.UNIT">
-    <fl-unit-editor
-      (valueChange)="onValueChange(styleProperty.key, $event)"
-      [value]="styleProperty.value"
-    ></fl-unit-editor>
+    <div class="input-container">
+      <label>{{ label || styleProperty.key }}</label>
+      <fl-unit-editor
+        (valueChange)="onValueChange(styleProperty.key, $event)"
+        [value]="styleProperty.value"
+      ></fl-unit-editor>
+    </div>
   </ng-container>
   <ng-container *ngSwitchCase="editorConstants.STYLE_INPUTS.SPACING">
-    {{ styleProperty.key }}
     <fl-spacing-editor
+      [propertyName]="label || styleProperty.key"
       (valueChange)="onValueChange(styleProperty.key, $event)"
       [value]="styleProperty.value"
     ></fl-spacing-editor>
   </ng-container>
   <ng-container *ngSwitchDefault>
     <fl-single-style-editor
+      label="{{ styleProperty.key }} {{ entry.key }}"
       *ngFor="
         let entry of assertAsNonStandardInputStyleEntry(styleProperty).value
           | keyvalue;

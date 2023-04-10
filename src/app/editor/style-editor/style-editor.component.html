@@ -14,17 +14,19 @@
         {{ state }}
       </div>
     </div>
-    <ng-container
-      *ngFor="
-        let entry of formConfig.styles.input[activeTab] | keyvalue;
-        trackBy: editorTrackBy
-      "
-    >
-      <fl-single-style-editor
-        (valueChange)="onInputValueChange($event.key, $event.value)"
-        [styleProperty]="entry"
-      ></fl-single-style-editor>
-    </ng-container>
+    <div class="property-input-grid">
+      <ng-container
+        *ngFor="
+          let entry of formConfig.styles.input[activeTab] | keyvalue;
+          trackBy: editorTrackBy
+        "
+      >
+        <fl-single-style-editor
+          (valueChange)="onInputValueChange($event.key, $event.value)"
+          [styleProperty]="entry"
+        ></fl-single-style-editor>
+      </ng-container>
+    </div>
   </div>
   ---------------------------------------------- <br />
   <div class="section-heading">Button styles</div>

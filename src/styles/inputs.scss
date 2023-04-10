@@ -29,3 +29,30 @@ textarea {
     color: var(--color-primary-a30);
   }
 }
+
+.input-label,
+label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--color-primary-a50);
+  display: block;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  label,
+  .input-label {
+    margin-bottom: 2px;
+  }
+
+  input[type="text"],
+  input[type="color"] {
+    @include normalize-inputs();
+    height: 26px;
+    font-size: 13px;
+    border-radius: 50px;
+    padding: 0 12px;
+  }
+}

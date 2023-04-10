@@ -1,5 +1,3 @@
-@import "../../../styles/inputs.scss";
-
 .field-type-toggle {
   display: flex;
   cursor: pointer;
@@ -25,28 +23,16 @@
     border-right: 1px solid var(--color-primary-a10);
   }
 
-  .field-property-input-container {
+  .input-container {
     margin: 0 8px;
   }
 }
 
-.field-property-input-container {
-  display: flex;
+.input-container {
+  flex-direction: row;
   align-items: center;
-  label {
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 18px;
-    color: var(--color-primary-a50);
-    margin-right: 5px;
-    display: block;
-  }
 
-  input {
-    @include normalize-inputs();
-    height: 26px;
-    font-size: 13px;
-    border-radius: 50px;
-    padding: 0 12px;
+  label {
+    margin-right: 5px;
   }
 }

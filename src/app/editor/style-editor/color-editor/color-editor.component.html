@@ -1,6 +1,13 @@
+<div (click)="colorInput.click()" class="pseudo-input">
+  <div class="color-swatch" [style]="{ background: value }"></div>
+  <div class="color-value">
+    {{ value }}
+  </div>
+</div>
 <input
   title="style color editor"
   (change)="onInputChange($event)"
   type="color"
   [value]="value"
+  #colorInput
 />
