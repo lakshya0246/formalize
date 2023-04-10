@@ -1,7 +1,8 @@
-import { SpacingProperty, FormStyles } from '../../global-types/styles';
-import { TEMPLATE_A_BUTTON_1_ID, TEMPLATE_A_BUTTON_2_ID } from './a.constants';
+import { FormStyles, SpacingProperty } from '../../global-types/styles';
 
-const DEFAULT_PADDING: SpacingProperty = new SpacingProperty(12);
+function getDefaultPadding(): SpacingProperty {
+  return new SpacingProperty(12);
+}
 
 export const STYLE_TEMPLATE_A: FormStyles = {
   borderRadius: 5,
@@ -9,26 +10,25 @@ export const STYLE_TEMPLATE_A: FormStyles = {
   verticalGap: 20,
   buttons: [
     {
-      buttonId: TEMPLATE_A_BUTTON_1_ID,
       default: {
         width: '100%',
         backgroundColor: '#007bff',
-        color: '#fff',
+        color: '#ff0000',
         borderWidth: 0,
         borderColor: '#007bff',
         fontSize: 16,
         height: 40,
-        padding: DEFAULT_PADDING,
+        padding: getDefaultPadding(),
       },
       hover: {
         width: '100%',
         backgroundColor: '#0069d9',
-        color: '#fff',
+        color: '#000000',
         borderWidth: 0,
         borderColor: '#0062cc',
         fontSize: 16,
         height: 40,
-        padding: DEFAULT_PADDING,
+        padding: getDefaultPadding(),
       },
       focus: {
         width: '100%',
@@ -38,7 +38,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderColor: '#0062cc',
         fontSize: 16,
         height: 40,
-        padding: DEFAULT_PADDING,
+        padding: getDefaultPadding(),
       },
       active: {
         width: '100%',
@@ -48,11 +48,10 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderColor: '#005cbf',
         fontSize: 16,
         height: 40,
-        padding: DEFAULT_PADDING,
+        padding: getDefaultPadding(),
       },
     },
     {
-      buttonId: TEMPLATE_A_BUTTON_2_ID,
       default: {
         width: '100%',
         backgroundColor: '#007bff',
@@ -61,7 +60,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderColor: '#007bff',
         fontSize: 16,
         height: 40,
-        padding: DEFAULT_PADDING,
+        padding: getDefaultPadding(),
       },
       hover: {
         width: '100%',
@@ -71,7 +70,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderColor: '#0062cc',
         fontSize: 16,
         height: 40,
-        padding: DEFAULT_PADDING,
+        padding: getDefaultPadding(),
       },
       focus: {
         width: '100%',
@@ -81,7 +80,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderColor: '#0062cc',
         fontSize: 16,
         height: 40,
-        padding: DEFAULT_PADDING,
+        padding: getDefaultPadding(),
       },
       active: {
         width: '100%',
@@ -91,7 +90,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         borderColor: '#005cbf',
         fontSize: 16,
         height: 40,
-        padding: DEFAULT_PADDING,
+        padding: getDefaultPadding(),
       },
     },
   ],
@@ -104,7 +103,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderColor: '#CCCCCC',
       fontSize: 14,
       height: 30,
-      padding: DEFAULT_PADDING,
+      padding: getDefaultPadding(),
       nsLabel: {
         fontSize: 14,
         color: '#000000',
@@ -122,7 +121,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderColor: '#CCCCCC',
       fontSize: 14,
       height: 30,
-      padding: DEFAULT_PADDING,
+      padding: getDefaultPadding(),
       nsLabel: {
         fontSize: 14,
         color: '#000000',
@@ -140,7 +139,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderColor: '#4C9AFF',
       fontSize: 14,
       height: 30,
-      padding: DEFAULT_PADDING,
+      padding: getDefaultPadding(),
       nsLabel: {
         fontSize: 14,
         color: '#000000',
@@ -158,7 +157,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderColor: '#FF4C4C',
       fontSize: 14,
       height: 30,
-      padding: DEFAULT_PADDING,
+      padding: getDefaultPadding(),
       nsLabel: {
         fontSize: 14,
         color: '#000000',
@@ -176,7 +175,7 @@ export const STYLE_TEMPLATE_A: FormStyles = {
       borderColor: '#66FF66',
       fontSize: 14,
       height: 30,
-      padding: DEFAULT_PADDING,
+      padding: getDefaultPadding(),
       nsLabel: {
         fontSize: 14,
         color: '#000000',

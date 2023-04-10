@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import {
+  ButtonStyles,
   ButtonStylesWithState,
   InputStyles,
   InputStylesWithState,
@@ -8,6 +9,7 @@ import {
 // TODO: Move to `styles.ts`
 export type KeyOfInputStylesWithState = keyof InputStylesWithState;
 export type KeyOfInputStyles = keyof InputStyles;
+export type KeyOfButtonStyles = keyof ButtonStyles;
 export type NonStandardKeyOfInputStyles = keyof Pick<
   InputStyles,
   'nsLabel' | 'nsPlaceholder'
@@ -17,6 +19,7 @@ export type NonStandardValueOfInputStyles = Pick<
   'nsLabel' | 'nsPlaceholder'
 >[NonStandardKeyOfInputStyles];
 export type ValueOfInputStyles = InputStyles[KeyOfInputStyles];
+export type ValueOfButtonStyles = ButtonStyles[KeyOfButtonStyles];
 export type KeyOfButtonStylesWithState = keyof ButtonStylesWithState;
 
 export enum StyleInputs {

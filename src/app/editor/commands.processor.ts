@@ -1,7 +1,11 @@
 import { FormConfig, FormField } from '../global-types';
-import { InputStyles } from '../global-types/styles';
+import { ButtonStyles, InputStyles } from '../global-types/styles';
 import { CommandBuilder, EditorCommands } from './commands.types';
-import { KeyOfInputStylesWithState } from './editor.types';
+import {
+  KeyOfButtonStylesWithState,
+  KeyOfInputStylesWithState,
+  ValueOfButtonStyles,
+} from './editor.types';
 
 /**
  * Shies away from deep cloning to avoid unnecessary re-renders
@@ -16,11 +20,20 @@ export const processCommand = new CommandBuilder()
     newField: FormField;
   }>()
   .appendCommand<{
-    type: EditorCommands.UPDATE_STYLE_FIELD_VALUE;
+    type: EditorCommands.UPDATE_INPUT_STYLE_FIELD_VALUE;
     payload: {
       inputState: KeyOfInputStylesWithState;
       propertyKey: keyof InputStyles;
       value: any;
+    };
+  }>()
+  .appendCommand<{
+    type: EditorCommands.UPDATE_BUTTON_STYLE_FIELD_VALUE;
+    payload: {
+      buttonIndex: number;
+      buttonState: KeyOfButtonStylesWithState;
+      propertyKey: keyof ButtonStyles;
+      value: ValueOfButtonStyles;
     };
   }>()
   .buildCommandProcessor<FormConfig>((state, command) => {
@@ -28,9 +41,20 @@ export const processCommand = new CommandBuilder()
       case EditorCommands.ADD_FIELD: {
         return { ...state, fields: [...state.fields, command.newField] };
       }
-      case EditorCommands.UPDATE_STYLE_FIELD_VALUE: {
+      case EditorCommands.UPDATE_INPUT_STYLE_FIELD_VALUE: {
         state.styles.input[command.payload.inputState] = {
           ...state.styles.input[command.payload.inputState],
+          [command.payload.propertyKey]: command.payload.value,
+        };
+        return state;
+      }
+      case EditorCommands.UPDATE_BUTTON_STYLE_FIELD_VALUE: {
+        state.styles.buttons[command.payload.buttonIndex][
+          command.payload.buttonState
+        ] = {
+          ...state.styles.buttons[command.payload.buttonIndex][
+            command.payload.buttonState
+          ],
           [command.payload.propertyKey]: command.payload.value,
         };
         return state;

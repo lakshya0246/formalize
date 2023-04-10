@@ -4,4 +4,11 @@
 
 <div *ngIf="editorService.formConfig$ | async as formConfig">
   {{ formConfig.styles.input.default | json }}
+  <br />
+  <br />
+  <br />
+  {{ formConfig.styles.buttons[0].default | json }}
+  <br />
+  <br />
+  {{ formConfig.styles.buttons[1].default | json }}
 </div>

@@ -9,8 +9,7 @@ export interface FormStyles {
   horizontalGap: number;
   verticalGap: number;
   /**
-   * Ideally the order should represent the order of buttons in the form,
-   * but to be safe each object also has the `id` of the corresponding button object
+   * Ideally the order should represent the order of buttons in the form
    */
   buttons: ButtonStylesWithState[];
   input: InputStylesWithState;
@@ -25,7 +24,6 @@ export interface InputStylesWithState<T = InputStyles> {
 }
 
 export interface ButtonStylesWithState<T = ButtonStyles> {
-  buttonId: string;
   default: T;
   hover: T;
   focus: T;

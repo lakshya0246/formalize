@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { EditorConstants } from '../editor-constants.service';
 import { EditorService } from '../editor.service';
-import { KeyOfInputStylesWithState } from '../editor.types';
+import {
+  KeyOfButtonStyles,
+  KeyOfButtonStylesWithState,
+  KeyOfInputStylesWithState,
+} from '../editor.types';
 import { EditorCommands } from '../commands.types';
 import { InputStyles } from 'src/app/global-types/styles';
 
@@ -12,6 +16,7 @@ import { InputStyles } from 'src/app/global-types/styles';
 })
 export class StyleEditorComponent {
   activeTab: KeyOfInputStylesWithState = 'default';
+  activeButtonTabs: Record<number, KeyOfButtonStylesWithState> = {};
 
   constructor(
     public editorService: EditorService,
@@ -20,8 +25,24 @@ export class StyleEditorComponent {
 
   onInputValueChange(propertyKey: keyof InputStyles, value: any) {
     this.editorService.processCommand({
-      type: EditorCommands.UPDATE_STYLE_FIELD_VALUE,
+      type: EditorCommands.UPDATE_INPUT_STYLE_FIELD_VALUE,
       payload: { inputState: this.activeTab, propertyKey, value },
+    });
+  }
+
+  getActiveButtonTab(buttonIndex: number) {
+    return this.activeButtonTabs[buttonIndex] || 'default';
+  }
+
+  onButtonValueChange(propertyKey: any, value: any, buttonIndex: number) {
+    this.editorService.processCommand({
+      type: EditorCommands.UPDATE_BUTTON_STYLE_FIELD_VALUE,
+      payload: {
+        buttonState: this.getActiveButtonTab(buttonIndex),
+        propertyKey,
+        value,
+        buttonIndex,
+      },
     });
   }
 

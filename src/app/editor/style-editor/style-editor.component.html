@@ -1,4 +1,5 @@
-<div *ngIf="editorService.formConfig$ | async as formConfig" class="tabs">
+INPUT STYLE EDITOR
+<ng-container *ngIf="editorService.formConfig$ | async as formConfig">
   <button
     class="tab"
     [class.active]="activeTab === state"
@@ -8,7 +9,7 @@
     {{ state }}
   </button>
 
-  <div
+  <ng-container
     *ngFor="
       let entry of formConfig.styles.input[activeTab] | keyvalue;
       trackBy: editorTrackBy
@@ -18,5 +19,39 @@
       (valueChange)="onInputValueChange($event.propertyKey, $event.value)"
       [styleProperty]="entry"
     ></fl-single-style-editor>
+  </ng-container>
+  <br />
+  <br />
+  ---------------------------------------------- <br />
+
+  BUTTON STYLE EDITOR
+  <div *ngFor="let button of formConfig.styles.buttons; index as i">
+    <br />
+
+    <button
+      class="tab"
+      [class.active]="activeButtonTabs[i] === state"
+      (click)="activeButtonTabs[i] = state"
+      *ngFor="let state of editorConstants.BUTTON_STATES"
+    >
+      {{ state }}
+    </button>
+    <div
+      *ngFor="
+        let entry of button[getActiveButtonTab(i)] | keyvalue;
+        trackBy: editorTrackBy
+      "
+    >
+      <!-- {{ entry | json }} -->
+      <fl-single-style-editor
+        (valueChange)="onButtonValueChange($event.propertyKey, $event.value, i)"
+        [styleProperty]="entry"
+      ></fl-single-style-editor>
+    </div>
+    <div></div>
   </div>
-</div>
+</ng-container>
+
+<br />
+<br />
+---------------------------------------------- <br />
