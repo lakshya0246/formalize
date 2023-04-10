@@ -1,0 +1,42 @@
+-----
+{{ styleProperty.key }}
+<ng-container
+  [ngSwitch]="editorConstants.STYLE_FIELD_INPUT_MAP[styleProperty.key]"
+>
+  <ng-container *ngSwitchCase="editorConstants.STYLE_INPUTS.COLOR">
+    <fl-color-editor
+      (valueChange)="onInputValueChange(styleProperty.key, $event)"
+      [value]="styleProperty.value"
+    ></fl-color-editor>
+  </ng-container>
+  <ng-container *ngSwitchCase="editorConstants.STYLE_INPUTS.UNIT">
+    <fl-unit-editor
+      (valueChange)="onInputValueChange(styleProperty.key, $event)"
+      [value]="styleProperty.value"
+    ></fl-unit-editor>
+  </ng-container>
+  <ng-container *ngSwitchCase="editorConstants.STYLE_INPUTS.SPACING">
+    {{ styleProperty.key }}
+    <fl-spacing-editor
+      (valueChange)="onInputValueChange(styleProperty.key, $event)"
+      [value]="styleProperty.value"
+    ></fl-spacing-editor>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <fl-single-style-editor
+      *ngFor="
+        let entry of assertAsNonStandardInputStyleEntry(styleProperty).value
+          | keyvalue;
+        trackBy: editorTrackBy
+      "
+      (valueChange)="
+        onInputValueChange(
+          $event.propertyKey,
+          $event.value,
+          assertAsNonStandardInputStyleEntry(styleProperty)
+        )
+      "
+      [styleProperty]="entry"
+    ></fl-single-style-editor>
+  </ng-container>
+</ng-container>

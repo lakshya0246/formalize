@@ -8,6 +8,7 @@ import { StyleEditorComponent } from './style-editor/style-editor.component';
 import { UnitEditorComponent } from './style-editor/unit-editor/unit-editor.component';
 import { ColorEditorComponent } from './style-editor/color-editor/color-editor.component';
 import { SpacingEditorComponent } from './style-editor/spacing-editor/spacing-editor.component';
+import { SingleStyleEditorComponent } from './style-editor/single-style-editor/single-style-editor.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SpacingEditorComponent } from './style-editor/spacing-editor/spacing-ed
     RestrictInputDirective,
     ColorEditorComponent,
     SpacingEditorComponent,
+    SingleStyleEditorComponent,
   ],
   imports: [CommonModule],
   exports: [EditorComponent],

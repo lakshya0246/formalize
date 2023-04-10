@@ -32,7 +32,6 @@ export class RestrictInputDirective {
     if (initialValue !== eventTarget.value) {
       event.stopPropagation();
     } else {
-      console.log({ target: (event.target as HTMLInputElement).value });
       this.change.emit((event.target as any).value);
     }
   }
