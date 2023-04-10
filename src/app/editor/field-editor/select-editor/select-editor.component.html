@@ -1,0 +1,30 @@
+<input
+  title="field label"
+  [value]="value.label"
+  (input)="onTextualPropertyChange('label', $event)"
+  type="text"
+/>
+Placeholder
+<input
+  title="field placeholder"
+  [value]="value.placeholder || ''"
+  (input)="onTextualPropertyChange('placeholder', $event)"
+  type="text"
+/>
+
+<div *ngFor="let option of value.options; index as i">
+  <input
+    type="text"
+    (input)="onOptionPropertyChange('label', i, $event)"
+    title="option label editor"
+    [value]="option.label"
+  />
+  <input
+    type="text"
+    (input)="onOptionPropertyChange('value', i, $event)"
+    title="option value editor"
+    [value]="option.value"
+  />
+  <br />
+  <br />
+</div>

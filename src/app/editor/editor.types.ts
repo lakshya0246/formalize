@@ -14,7 +14,7 @@ export enum StyleInputs {
   COLOR = 'COLOR',
 }
 
-export interface StyleEditor<T = any> {
+export interface Editor<T = any> {
   value: T;
   valueChange: EventEmitter<T>;
 }

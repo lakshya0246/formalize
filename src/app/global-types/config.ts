@@ -24,7 +24,6 @@ export type FormField =
 export interface BaseFormField {
   id: string;
   label: string;
-  type: FormFields;
   validationSchema: any;
   placeholder?: string;
 }

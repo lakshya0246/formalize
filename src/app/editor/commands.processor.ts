@@ -18,8 +18,8 @@ export const processCommand = new CommandBuilder()
     newField: FormField;
   }>()
   .appendCommand<{
-    type: EditorCommands.ADD_FIELD;
-    newField: FormField;
+    type: EditorCommands.UPDATE_FIELD;
+    payload: { fieldIndex: number; field: FormField };
   }>()
   .appendCommand<{
     type: EditorCommands.UPDATE_INPUT_STYLE_FIELD_VALUE;
@@ -42,6 +42,10 @@ export const processCommand = new CommandBuilder()
     switch (command.type) {
       case EditorCommands.ADD_FIELD: {
         return { ...state, fields: [...state.fields, command.newField] };
+      }
+      case EditorCommands.UPDATE_FIELD: {
+        state.fields[command.payload.fieldIndex] = command.payload.field;
+        return state;
       }
       case EditorCommands.UPDATE_INPUT_STYLE_FIELD_VALUE: {
         state.styles.input[command.payload.inputState] = {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { StyleEditor } from '../../editor.types';
+import { Editor } from '../../editor.types';
 import { SpacingProperty } from 'src/app/global-types/styles';
 
 @Component({
@@ -7,7 +7,7 @@ import { SpacingProperty } from 'src/app/global-types/styles';
   templateUrl: './spacing-editor.component.html',
   styleUrls: ['./spacing-editor.component.scss'],
 })
-export class SpacingEditorComponent implements StyleEditor<SpacingProperty> {
+export class SpacingEditorComponent implements Editor<SpacingProperty> {
   // TODO: Add check for verifying if instance of SpacingProperty
   @Input() value!: any;
   @Output() valueChange = new EventEmitter<SpacingProperty>();

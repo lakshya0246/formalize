@@ -1,0 +1,13 @@
+<input
+  title="field label"
+  [value]="value.label"
+  (input)="onTextualPropertyChange('label', $event)"
+  type="text"
+/>
+Placeholder
+<input
+  title="field placeholder"
+  [value]="value.placeholder || ''"
+  (input)="onTextualPropertyChange('placeholder', $event)"
+  type="text"
+/>

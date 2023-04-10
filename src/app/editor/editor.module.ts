@@ -9,6 +9,10 @@ import { UnitEditorComponent } from './style-editor/unit-editor/unit-editor.comp
 import { ColorEditorComponent } from './style-editor/color-editor/color-editor.component';
 import { SpacingEditorComponent } from './style-editor/spacing-editor/spacing-editor.component';
 import { SingleStyleEditorComponent } from './style-editor/single-style-editor/single-style-editor.component';
+import { FieldEditorComponent } from './field-editor/field-editor.component';
+import { FieldEditorDirective } from './field-editor/field-editor.directive';
+import { BaseEditorComponent } from './field-editor/base-editor/base-editor.component';
+import { SelectEditorComponent } from './field-editor/select-editor/select-editor.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { SingleStyleEditorComponent } from './style-editor/single-style-editor/s
     ColorEditorComponent,
     SpacingEditorComponent,
     SingleStyleEditorComponent,
+    FieldEditorComponent,
+    FieldEditorDirective,
+    BaseEditorComponent,
+    SelectEditorComponent,
   ],
   imports: [CommonModule],
   exports: [EditorComponent],
