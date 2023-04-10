@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { debounceTime, map } from 'rxjs';
 import { convertToHTML } from '../conversion-utilities/html';
-import { EditorService } from './editor.service';
 import { GeneratorService } from '../generator/generator.service';
 import { FailureResponse } from '../generator/generator.types';
 import { EditorCommands } from './commands.types';
+import { EditorService } from './editor.service';
 
 @Component({
   selector: 'fl-editor',

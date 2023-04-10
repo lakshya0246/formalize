@@ -10,7 +10,6 @@ export function sanitizeParsedArray(array: Partial<FormField>[]): FormField[] {
       ...item,
       id: uuid(),
       placeholder: item.label || 'Placeholder',
-      validationSchema: undefined,
     } as FormField;
   });
 }

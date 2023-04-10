@@ -24,7 +24,10 @@ export type FormField =
 export interface BaseFormField {
   id: string;
   label: string;
-  validationSchema: any;
+  // /**
+  //  * string since it's only used in the preview and output
+  //  */
+  // validationSchema: { generationPrompts: string[]; validator: string };
   placeholder?: string;
 }
 
