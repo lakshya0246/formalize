@@ -6,6 +6,7 @@ import { GeneratorService } from '../generator/generator.service';
 import { FailureResponse } from '../generator/generator.types';
 import { EditorCommands } from './commands.types';
 import { EditorService } from './editor.service';
+import { PreviewTab } from './editor.types';
 
 @Component({
   selector: 'fl-editor',
@@ -13,6 +14,8 @@ import { EditorService } from './editor.service';
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent {
+  previewTabs: PreviewTab[] = ['preview', 'code'];
+  activePreviewTab: PreviewTab = 'preview';
   generatorPrompt: string = '';
   previewHtml$ = this.editorService.formConfig$.pipe(
     debounceTime(500),

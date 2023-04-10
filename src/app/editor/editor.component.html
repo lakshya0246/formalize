@@ -34,11 +34,25 @@
     <fl-style-editor></fl-style-editor>
   </div>
   <div *ngIf="previewHtml$ | async as previewHtml">
-    LIVE PREVIEV
-    <!-- <div [innerHTML]="previewHtml.sanitized"></div> -->
-    <br />
-    <br />
-    CODE
-    <code [innerText]="previewHtml.raw"></code>
+    <div class="preview-container">
+      <div class="preview-tabs">
+        <div
+          *ngFor="let tab of previewTabs"
+          (click)="activePreviewTab = tab"
+          [class.active]="activePreviewTab === tab"
+          class="preview-tab"
+        >
+          {{ tab }}
+        </div>
+      </div>
+      <div
+        *ngIf="activePreviewTab === 'preview'"
+        [innerHTML]="previewHtml.sanitized"
+      ></div>
+      <code
+        *ngIf="activePreviewTab === 'code'"
+        [innerText]="previewHtml.raw"
+      ></code>
+    </div>
   </div>
 </div>
