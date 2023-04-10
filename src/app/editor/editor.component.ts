@@ -11,12 +11,15 @@ import { debounceTime, map } from 'rxjs';
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent {
-  html: SafeHtml = '';
-  previewHTML$ = this.editorService.formConfig$.pipe(
+  previewHtml$ = this.editorService.formConfig$.pipe(
     debounceTime(500),
-    map((formConfig) =>
-      this.sanitizer.bypassSecurityTrustHtml(convertToHTML(formConfig))
-    )
+    map((formConfig) => {
+      const raw = convertToHTML(formConfig);
+      return {
+        sanitized: this.sanitizer.bypassSecurityTrustHtml(raw),
+        raw,
+      };
+    })
   );
 
   constructor(

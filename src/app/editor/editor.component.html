@@ -2,8 +2,17 @@
 
 <div class="layout">
   <div>
+    EDITOR
+    <br />
     <fl-style-editor></fl-style-editor>
     <fl-field-editor></fl-field-editor>
   </div>
-  <div [innerHTML]="previewHTML$ | async"></div>
+  <div *ngIf="previewHtml$ | async as previewHtml">
+    LIVE PREVIEV
+    <div [innerHTML]="previewHtml.sanitized"></div>
+    <br />
+    <br />
+    CODE
+    <code [innerText]="previewHtml.raw"></code>
+  </div>
 </div>
