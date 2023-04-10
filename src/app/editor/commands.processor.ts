@@ -30,6 +30,10 @@ export const processCommand = new CommandBuilder()
     };
   }>()
   .appendCommand<{
+    type: EditorCommands.REPLACE_FIELDS;
+    fields: FormField[];
+  }>()
+  .appendCommand<{
     type: EditorCommands.UPDATE_BUTTON_STYLE_FIELD_VALUE;
     payload: {
       buttonIndex: number;
@@ -52,6 +56,10 @@ export const processCommand = new CommandBuilder()
           ...state.styles.input[command.payload.inputState],
           [command.payload.propertyKey]: command.payload.value,
         };
+        return state;
+      }
+      case EditorCommands.REPLACE_FIELDS: {
+        state.fields = command.fields;
         return state;
       }
       case EditorCommands.UPDATE_BUTTON_STYLE_FIELD_VALUE: {

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Configuration, CreateCompletionRequest, OpenAIApi } from 'openai';
 import { environment } from 'src/environments/environment';
-import { UserFacingErrorTypes } from '../global-types';
+import { UserFacingErrorTypes } from '../global-types/errors';
 import { FailureResponse } from './generator.types';
 import { PromptTemplate } from './prompt.types';
+import { PROMPT_TEMPLATE_1 } from './prompts.constants';
+import { sanitizeParsedArray } from './generator.helpers';
+import { FormField } from '../global-types/config';
 
-// TODO: add generation for all fields at once
 // TODO: add generation for validation of a particular field
 // TODO: add generation for generation of select options
 
@@ -19,6 +21,25 @@ export class GeneratorService {
     })
   );
   constructor() {}
+
+  async generateFormConfig(
+    prompt: string
+  ): Promise<FailureResponse | FormField[]> {
+    const response = await this.getCompletion(prompt, PROMPT_TEMPLATE_1);
+    if (!(response instanceof FailureResponse)) {
+      try {
+        const parsed = JSON.parse(response || '[]');
+        return sanitizeParsedArray(parsed);
+      } catch (err) {
+        return new FailureResponse({
+          errorType: UserFacingErrorTypes.FORM_CONFIG_PARSING_ERROR,
+          reason: 'Could not process the prompt',
+          context: response,
+        });
+      }
+    }
+    return response;
+  }
 
   private async getCompletion(
     prompt: string,

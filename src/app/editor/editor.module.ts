@@ -13,6 +13,7 @@ import { FieldEditorComponent } from './field-editor/field-editor.component';
 import { FieldEditorDirective } from './field-editor/field-editor.directive';
 import { BaseEditorComponent } from './field-editor/base-editor/base-editor.component';
 import { SelectEditorComponent } from './field-editor/select-editor/select-editor.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { SelectEditorComponent } from './field-editor/select-editor/select-edito
     BaseEditorComponent,
     SelectEditorComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   exports: [EditorComponent],
   providers: [EditorService, EditorConstants],
 })

@@ -1,4 +1,4 @@
-import { UserFacingErrorTypes } from '../global-types';
+import { UserFacingErrorTypes } from '../global-types/errors';
 
 interface FailureResponseConfig<T> {
   errorType: UserFacingErrorTypes;
