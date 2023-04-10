@@ -32,18 +32,19 @@ export class EditorComponent {
   ) {}
 
   onGeneratePromptClick() {
-    console.log(this.generatorPrompt);
-    this.generatorService
-      .generateFormConfig(this.generatorPrompt)
-      .then((response) => {
-        if (response instanceof FailureResponse) {
-          console.log(response.getHumanizedErrorMessage());
-        } else {
-          this.editorService.processCommand({
-            type: EditorCommands.REPLACE_FIELDS,
-            fields: response,
-          });
-        }
-      });
+    if (Boolean(this.generatorPrompt)) {
+      this.generatorService
+        .generateFormConfig(this.generatorPrompt)
+        .then((response) => {
+          if (response instanceof FailureResponse) {
+            console.log(response.getHumanizedErrorMessage());
+          } else {
+            this.editorService.processCommand({
+              type: EditorCommands.REPLACE_FIELDS,
+              fields: response,
+            });
+          }
+        });
+    }
   }
 }

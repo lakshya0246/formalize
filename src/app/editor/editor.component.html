@@ -1,22 +1,29 @@
-<p>HTML</p>
-
 <div class="layout">
   <div>
-    EDITOR
-    <br />
-    <div>
-      <textarea
-        [(ngModel)]="generatorPrompt"
-        title="generator"
-        name="generator"
-        id=""
-        rows="10"
-      ></textarea>
-      <button (click)="onGeneratePromptClick()">Generate</button>
+    <div class="section-heading">Fields</div>
+    <div class="section-container">
+      <div class="generate-fields-section">
+        <textarea
+          [(ngModel)]="generatorPrompt"
+          title="generator"
+          name="generator"
+          id=""
+          rows="3"
+          placeholder="Enter prompt to generate fields"
+        ></textarea>
+        <div class="button-group">
+          <button (click)="onGeneratePromptClick()" class="button">
+            Load example
+          </button>
+          <button (click)="onGeneratePromptClick()" class="button primary">
+            Generate Fields
+          </button>
+        </div>
+      </div>
+      <br />
+      <fl-style-editor></fl-style-editor>
+      <fl-field-editor></fl-field-editor>
     </div>
-    <br />
-    <fl-style-editor></fl-style-editor>
-    <fl-field-editor></fl-field-editor>
   </div>
   <div *ngIf="previewHtml$ | async as previewHtml">
     LIVE PREVIEV

@@ -1,3 +1,19 @@
 :root {
-  --primary: #7700ad;
+  --color-primary: hsl(281, 100%, 34%);
+  --color-primary-2: hsl(281, 100%, 24%);
+  --color-primary-a02: hsla(281, 100%, 34%, 0.02);
+  --color-primary-a05: hsla(281, 100%, 34%, 0.05);
+  --color-primary-a10: hsla(281, 100%, 34%, 0.1);
+  --color-primary-a20: hsla(281, 100%, 34%, 0.2);
+  --color-primary-a30: hsla(281, 100%, 34%, 0.3);
+  --color-text-primary-60: #a566c1;
+
+  --color-grey-05: hsla(0, 0%, 95%, 1);
+  --color-grey-1: hsla(0, 0%, 90%, 1);
+  --color-grey-2: hsla(0, 0%, 80%, 1);
+  --color-grey-3: hsla(0, 0%, 70%, 1);
+  --color-grey-4: hsla(0, 0%, 60%, 1);
+  --color-grey-5: hsla(0, 0%, 50%, 1);
+  --color-grey-6: hsla(0, 0%, 40%, 1);
+  --color-grey-8: hsla(0, 0%, 20%, 1);
 }

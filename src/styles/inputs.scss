@@ -1,0 +1,31 @@
+@mixin normalize-inputs {
+  box-sizing: border-box;
+  cursor: pointer;
+  appearance: none;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid var(--color-primary-a10);
+  transition: border-color 150ms;
+  width: 100%;
+  font-family: Poppins;
+  outline: 2px solid transparent;
+  color: var(--color-grey-8);
+  &:focus {
+    border-color: transparent;
+    outline: 2px solid var(--color-primary-a30);
+  }
+}
+
+textarea {
+  @include normalize-inputs();
+  background: var(--color-primary-a02);
+  border-radius: 12px;
+  resize: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  &::placeholder {
+    color: var(--color-primary-a30);
+  }
+}

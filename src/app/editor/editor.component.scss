@@ -4,7 +4,26 @@
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   & > * {
-    border: 2px solid red;
-    padding: 20px;
+  }
+}
+
+.section-heading {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--color-text-primary-60);
+  margin-bottom: 8px;
+}
+
+.section-container {
+  background: var(--color-primary-a02);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.generate-fields-section {
+  padding: 16px;
+  textarea {
+    margin-bottom: 16px;
   }
 }
