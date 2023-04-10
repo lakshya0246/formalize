@@ -1,10 +1,13 @@
 import {
+  ComponentRef,
   Directive,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   ViewContainerRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -22,11 +25,19 @@ import { SelectEditorComponent } from './select-editor/select-editor.component';
 @Directive({
   selector: '[flFieldEditor]',
 })
-export class FieldEditorDirective implements OnInit, OnDestroy {
+export class FieldEditorDirective implements OnInit, OnDestroy, OnChanges {
   @Input('flFieldEditor') field!: FormField;
   @Output('valueChange') valueChanges = new EventEmitter<FormField>();
   valueChangeSubscription: Subscription | undefined;
+  componentRef!: ComponentRef<BaseEditorComponent<any>>;
   constructor(public viewContainerRef: ViewContainerRef) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.componentRef) {
+      if (changes['field']?.currentValue !== changes['field']?.previousValue)
+        this.componentRef.instance.value = this.field;
+    }
+  }
 
   ngOnDestroy(): void {
     this.valueChangeSubscription?.unsubscribe?.();
@@ -35,54 +46,53 @@ export class FieldEditorDirective implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.viewContainerRef.clear();
     if (this.field) {
-      let componentRef;
       switch (this.field.type) {
         case FormFields.SELECT:
           {
-            componentRef = this.viewContainerRef.createComponent(
+            this.componentRef = this.viewContainerRef.createComponent(
               SelectEditorComponent
             );
-            componentRef.instance.value = this.field;
+            this.componentRef.instance.value = this.field;
           }
           break;
         case FormFields.EMAIL:
           {
-            componentRef = this.viewContainerRef.createComponent(
+            this.componentRef = this.viewContainerRef.createComponent(
               BaseEditorComponent<EmailField>
             );
-            componentRef.instance.value = this.field;
+            this.componentRef.instance.value = this.field;
           }
           break;
         case FormFields.NUMBER:
           {
-            componentRef = this.viewContainerRef.createComponent(
+            this.componentRef = this.viewContainerRef.createComponent(
               BaseEditorComponent<NumberField>
             );
-            componentRef.instance.value = this.field;
+            this.componentRef.instance.value = this.field;
           }
           break;
 
         case FormFields.PHONE:
           {
-            componentRef = this.viewContainerRef.createComponent(
+            this.componentRef = this.viewContainerRef.createComponent(
               BaseEditorComponent<PhoneField>
             );
-            componentRef.instance.value = this.field;
+            this.componentRef.instance.value = this.field;
           }
           break;
 
         case FormFields.TEXT:
         default:
           {
-            componentRef = this.viewContainerRef.createComponent(
+            this.componentRef = this.viewContainerRef.createComponent(
               BaseEditorComponent<TextField>
             );
-            componentRef.instance.value = this.field;
+            this.componentRef.instance.value = this.field;
           }
           break;
       }
       this.valueChangeSubscription =
-        componentRef.instance.valueChange.subscribe((value) =>
+        this.componentRef.instance.valueChange.subscribe((value) =>
           this.valueChanges.emit(value)
         );
     }

@@ -4,9 +4,12 @@ import { environment } from 'src/environments/environment';
 import { UserFacingErrorTypes } from '../global-types/errors';
 import { FailureResponse } from './generator.types';
 import { PromptTemplate } from './prompt.types';
-import { PROMPT_TEMPLATE_1 } from './prompts.constants';
-import { sanitizeParsedArray } from './generator.helpers';
-import { FormField } from '../global-types/config';
+import { PROMPT_TEMPLATE_1, PROMPT_TEMPLATE_2 } from './prompts.constants';
+import {
+  sanitizeParsedFormFieldArray,
+  sanitizeParsedSelectOptionArray,
+} from './generator.helpers';
+import { FormField, SelectOption } from '../global-types/config';
 
 // TODO: add generation for validation of a particular field
 // TODO: add generation for generation of select options
@@ -29,10 +32,29 @@ export class GeneratorService {
     if (!(response instanceof FailureResponse)) {
       try {
         const parsed = JSON.parse(response || '[]');
-        return sanitizeParsedArray(parsed);
+        return sanitizeParsedFormFieldArray(parsed);
       } catch (err) {
         return new FailureResponse({
           errorType: UserFacingErrorTypes.FORM_CONFIG_PARSING_ERROR,
+          reason: 'Could not process the prompt',
+          context: response,
+        });
+      }
+    }
+    return response;
+  }
+
+  async generateSelectOptions(
+    prompt: string
+  ): Promise<FailureResponse | SelectOption[]> {
+    const response = await this.getCompletion(prompt, PROMPT_TEMPLATE_2);
+    if (!(response instanceof FailureResponse)) {
+      try {
+        const parsed = JSON.parse(response || '[]');
+        return sanitizeParsedSelectOptionArray(parsed);
+      } catch (err) {
+        return new FailureResponse({
+          errorType: UserFacingErrorTypes.SELECT_OPTIONS_PARSING_ERROR,
           reason: 'Could not process the prompt',
           context: response,
         });

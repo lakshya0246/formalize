@@ -26,3 +26,15 @@ export const PROMPT_TEMPLATE_1: PromptTemplate = {
     `;
   },
 };
+
+export const PROMPT_TEMPLATE_2: PromptTemplate = {
+  context: `
+        type SelectOption = {label: string; value: number | string}[];
+    `,
+  getPrompt: function (prompt) {
+    return `
+        ${this.context}
+        Generate an array of type SelectOption in JSON format with the following instructions: ${prompt}.
+    `;
+  },
+};

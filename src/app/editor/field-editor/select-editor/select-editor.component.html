@@ -11,8 +11,18 @@ Placeholder
   (input)="onTextualPropertyChange('placeholder', $event)"
   type="text"
 />
+<br />
+<textarea
+  placeholder="Enter prompt to generate options"
+  title="generate options prompt"
+  type="text"
+  rows="3"
+  [(ngModel)]="generateOptionsPrompt"
+></textarea>
 
-<div *ngFor="let option of value.options; index as i">
+<button (click)="onGenerateOptionsClick()">generate</button>
+<br />
+<div *ngFor="let option of value.options; index as i; trackBy: optionTrackBy">
   <input
     type="text"
     (input)="onOptionPropertyChange('label', i, $event)"
