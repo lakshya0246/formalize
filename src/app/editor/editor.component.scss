@@ -1,0 +1,10 @@
+.layout {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  & > * {
+    border: 2px solid red;
+    padding: 20px;
+  }
+}

@@ -1,4 +1,9 @@
-import { ButtonType, FormConfig, FormField, FormFields } from '../global-types';
+import {
+  ButtonType,
+  FormConfig,
+  FormField,
+  FormFields,
+} from '../global-types/config';
 import {
   SpacingProperty,
   FormStyles,

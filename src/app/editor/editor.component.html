@@ -1,20 +1,9 @@
 <p>HTML</p>
-<div [innerHTML]="html"></div>
-<fl-style-editor></fl-style-editor>
-<fl-field-editor></fl-field-editor>
 
-<div *ngIf="editorService.formConfig$ | async as formConfig">
-  {{ formConfig.styles.input.default | json }}
-  <br />
-  <br />
-  <br />
-  {{ formConfig.styles.buttons[0].default | json }}
-  <br />
-  <br />
-  {{ formConfig.styles.buttons[1].default | json }}
-  <br />
-  <br />
-  <br />
-  <br />
-  {{ formConfig.fields | json }}
+<div class="layout">
+  <div>
+    <fl-style-editor></fl-style-editor>
+    <fl-field-editor></fl-field-editor>
+  </div>
+  <div [innerHTML]="previewHTML$ | async"></div>
 </div>
