@@ -1,5 +1,30 @@
+.section-container {
+  padding: 16px;
+}
+.tabs {
+  display: flex;
+  .tab {
+    margin-right: 8px;
+  }
+}
 .tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  background: var(--color-primary-a02);
+  color: var(--color-primary);
+
   &.active {
-    border-color: red;
+    background: white;
+    border-color: var(--color-primary);
   }
 }

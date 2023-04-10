@@ -1,53 +1,60 @@
-INPUT STYLE EDITOR
 <ng-container *ngIf="editorService.formConfig$ | async as formConfig">
-  <button
-    class="tab"
-    [class.active]="activeTab === state"
-    (click)="activeTab = state"
-    *ngFor="let state of editorConstants.INPUT_STATES"
-  >
-    {{ state }}
-  </button>
+  <div class="section-heading">Themes</div>
+  <div class="section-container"></div>
 
-  <ng-container
-    *ngFor="
-      let entry of formConfig.styles.input[activeTab] | keyvalue;
-      trackBy: editorTrackBy
-    "
-  >
-    <fl-single-style-editor
-      (valueChange)="onInputValueChange($event.key, $event.value)"
-      [styleProperty]="entry"
-    ></fl-single-style-editor>
-  </ng-container>
-  <br />
-  <br />
-  ---------------------------------------------- <br />
-
-  BUTTON STYLE EDITOR
-  <div *ngFor="let button of formConfig.styles.buttons; index as i">
-    <br />
-
-    <button
-      class="tab"
-      [class.active]="activeButtonTabs[i] === state"
-      (click)="activeButtonTabs[i] = state"
-      *ngFor="let state of editorConstants.BUTTON_STATES"
-    >
-      {{ state }}
-    </button>
-    <div
+  <div class="section-heading">Input Styles</div>
+  <div class="section-container">
+    <div class="tabs">
+      <div
+        class="tab"
+        [class.active]="activeTab === state"
+        (click)="activeTab = state"
+        *ngFor="let state of editorConstants.INPUT_STATES"
+      >
+        {{ state }}
+      </div>
+    </div>
+    <ng-container
       *ngFor="
-        let entry of button[getActiveButtonTab(i)] | keyvalue;
+        let entry of formConfig.styles.input[activeTab] | keyvalue;
         trackBy: editorTrackBy
       "
     >
       <fl-single-style-editor
-        (valueChange)="onUnsafeButtonValueChange($event.key, $event.value, i)"
+        (valueChange)="onInputValueChange($event.key, $event.value)"
         [styleProperty]="entry"
       ></fl-single-style-editor>
+    </ng-container>
+  </div>
+  ---------------------------------------------- <br />
+  <div class="section-heading">Button styles</div>
+  <div class="section-container">
+    <div *ngFor="let button of formConfig.styles.buttons; index as i">
+      {{ formConfig.buttons[i].label }}
+      <div class="tabs">
+        <div
+          class="tab"
+          [class.active]="activeButtonTabs[i] === state"
+          (click)="activeButtonTabs[i] = state"
+          *ngFor="let state of editorConstants.BUTTON_STATES"
+        >
+          {{ state }}
+        </div>
+      </div>
+      v>
+      <div
+        *ngFor="
+          let entry of button[getActiveButtonTab(i)] | keyvalue;
+          trackBy: editorTrackBy
+        "
+      >
+        <fl-single-style-editor
+          (valueChange)="onUnsafeButtonValueChange($event.key, $event.value, i)"
+          [styleProperty]="entry"
+        ></fl-single-style-editor>
+      </div>
+      <div></div>
     </div>
-    <div></div>
   </div>
 </ng-container>
 

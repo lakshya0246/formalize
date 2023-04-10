@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import {
-  KeyOfButtonStyles,
   KeyOfButtonStylesWithState,
-  KeyOfInputStyles,
   KeyOfInputStylesWithState,
 } from 'src/app/global-types/styles';
 import { EditorCommands } from '../commands.types';
