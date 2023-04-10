@@ -4,3 +4,8 @@
 @import "../src/styles/buttons.scss";
 @import "../src/styles/inputs.scss";
 @import "../src/styles/layout.scss";
+@import "node_modules/prismjs/themes/prism-twilight.min.css";
+
+* {
+  box-sizing: border-box;
+}

@@ -1,53 +1,6 @@
-.layout {
-  position: relative;
-  display: grid;
-  width: 100%;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  padding: 12px;
-}
-
 .generate-fields-section {
   padding: 16px;
   textarea {
     margin-bottom: 16px;
-  }
-}
-
-.preview-container {
-  position: fixed;
-  top: 48px;
-  right: 24px;
-  background: var(--color-primary-3);
-  border-radius: 16px;
-  width: 40vw;
-  height: 80vh;
-  .preview-tabs {
-    position: absolute;
-    top: -28px;
-    left: 16px;
-  }
-}
-
-.preview-tabs {
-  display: flex;
-  & > * {
-    margin-right: 4px;
-  }
-}
-
-.preview-tab {
-  cursor: pointer;
-  border-radius: 16px 16px 0 0;
-  padding: 6px 20px;
-  background: var(--color-primary-3);
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 20px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-primary-a60);
-  &.active {
-    color: white;
   }
 }

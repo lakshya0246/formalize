@@ -37,4 +37,3 @@ export type ButtonStyleEditorProperty = {
 export type StyleEditorProperty =
   | InputStyleEditorProperty
   | ButtonStyleEditorProperty;
-export type PreviewTab = 'preview' | 'code';
