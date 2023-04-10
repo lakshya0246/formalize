@@ -28,11 +28,10 @@
       </ng-container>
     </div>
   </div>
-  ---------------------------------------------- <br />
   <div class="section-heading">Button styles</div>
   <div class="section-container">
     <div *ngFor="let button of formConfig.styles.buttons; index as i">
-      {{ formConfig.buttons[i].label }}
+      <div class="button-label">{{ formConfig.buttons[i].label }}</div>
       <div class="tabs">
         <div
           class="tab"
@@ -43,23 +42,22 @@
           {{ state }}
         </div>
       </div>
-      v>
-      <div
-        *ngFor="
-          let entry of button[getActiveButtonTab(i)] | keyvalue;
-          trackBy: editorTrackBy
-        "
-      >
-        <fl-single-style-editor
-          (valueChange)="onUnsafeButtonValueChange($event.key, $event.value, i)"
-          [styleProperty]="entry"
-        ></fl-single-style-editor>
+      <div class="property-input-grid">
+        <div
+          *ngFor="
+            let entry of button[getActiveButtonTab(i)] | keyvalue;
+            trackBy: editorTrackBy
+          "
+        >
+          <fl-single-style-editor
+            (valueChange)="
+              onUnsafeButtonValueChange($event.key, $event.value, i)
+            "
+            [styleProperty]="entry"
+          ></fl-single-style-editor>
+        </div>
       </div>
-      <div></div>
+      <div class="divider"></div>
     </div>
   </div>
 </ng-container>
-
-<br />
-<br />
----------------------------------------------- <br />
