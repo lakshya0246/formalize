@@ -7,6 +7,7 @@ import { RestrictInputDirective } from './restrict-input.directive';
 import { StyleEditorComponent } from './style-editor/style-editor.component';
 import { UnitEditorComponent } from './style-editor/unit-editor/unit-editor.component';
 import { ColorEditorComponent } from './style-editor/color-editor/color-editor.component';
+import { SpacingEditorComponent } from './style-editor/spacing-editor/spacing-editor.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ColorEditorComponent } from './style-editor/color-editor/color-editor.c
     UnitEditorComponent,
     RestrictInputDirective,
     ColorEditorComponent,
+    SpacingEditorComponent,
   ],
   imports: [CommonModule],
   exports: [EditorComponent],

@@ -1,0 +1,14 @@
+<div>
+  <span *ngFor="let input of INPUTS">
+    {{ input }}
+    <input
+      title="spacing {{ input }} editor"
+      type="text"
+      class="text"
+      [placeholder]="input"
+      [value]="value[input]"
+      flRestrictInputTo="number"
+      (safeChange)="onSafeChange(input, $event)"
+    />
+  </span>
+</div>

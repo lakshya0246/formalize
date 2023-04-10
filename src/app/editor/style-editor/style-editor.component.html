@@ -15,6 +15,7 @@
     "
   >
     <div [ngSwitch]="editorConstants.STYLE_FIELD_INPUT_MAP[entry.key]">
+      <!-- TODO: Render components dynamically -->
       <div *ngSwitchCase="editorConstants.STYLE_INPUTS.COLOR">
         <fl-color-editor
           (valueChange)="onInputValueChange(entry.key, $event)"
@@ -29,7 +30,11 @@
         ></fl-unit-editor>
       </div>
       <div *ngSwitchCase="editorConstants.STYLE_INPUTS.SPACING">
-        {{ editorConstants.STYLE_INPUTS.SPACING }} {{ entry.key }}
+        {{ entry.key }}
+        <fl-spacing-editor
+          (valueChange)="onInputValueChange(entry.key, $event)"
+          [value]="entry.value"
+        ></fl-spacing-editor>
       </div>
       <div *ngSwitchDefault>
         Default: {{ entry.key }} | {{ entry.value | json }}
