@@ -5,7 +5,10 @@ import { Editor } from '../../editor.types';
 @Component({
   selector: 'fl-text-editor',
   templateUrl: './base-editor.component.html',
-  styleUrls: ['./base-editor.component.scss'],
+  styleUrls: [
+    './base-editor.component.scss',
+    '../field-editor.common-styles.scss',
+  ],
 })
 export class BaseEditorComponent<T extends BaseFormField> implements Editor<T> {
   @Input() value!: T;

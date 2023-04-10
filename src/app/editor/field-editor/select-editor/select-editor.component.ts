@@ -7,7 +7,10 @@ import { FailureResponse } from 'src/app/generator/generator.types';
 @Component({
   selector: 'fl-select-editor',
   templateUrl: './select-editor.component.html',
-  styleUrls: ['./select-editor.component.scss'],
+  styleUrls: [
+    './select-editor.component.scss',
+    '../field-editor.common-styles.scss',
+  ],
 })
 export class SelectEditorComponent extends BaseEditorComponent<SelectField> {
   generateOptionsPrompt: string = '';

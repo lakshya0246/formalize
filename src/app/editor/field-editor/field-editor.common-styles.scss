@@ -1,0 +1,52 @@
+@import "../../../styles/inputs.scss";
+
+.field-type-toggle {
+  display: flex;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-primary-a40);
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+}
+
+.field-container {
+  display: flex;
+  border: 1px solid var(--color-primary-a10);
+  border-radius: 12px;
+  align-items: center;
+  height: 40px;
+
+  .field-type-toggle {
+    height: 100%;
+    width: 80px;
+    border-right: 1px solid var(--color-primary-a10);
+  }
+
+  .field-property-input-container {
+    margin: 0 8px;
+  }
+}
+
+.field-property-input-container {
+  display: flex;
+  align-items: center;
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    color: var(--color-primary-a50);
+    margin-right: 5px;
+    display: block;
+  }
+
+  input {
+    @include normalize-inputs();
+    height: 26px;
+    font-size: 13px;
+    border-radius: 50px;
+    padding: 0 12px;
+  }
+}

@@ -1,12 +1,11 @@
 <ng-container *ngIf="editorService.formConfig$ | async as formConfig">
-  <ng-container
+  <div
+    class="field-editor-wrapper"
     *ngFor="let field of formConfig.fields; index as i; trackBy: editorTrackBy"
   >
     <ng-container
       [flFieldEditor]="field"
       (valueChange)="onValueChanges($event, i)"
     ></ng-container>
-    <br />
-    <br />
-  </ng-container>
+  </div>
 </ng-container>

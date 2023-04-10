@@ -1,40 +1,68 @@
-<input
-  title="field label"
-  [value]="value.label"
-  (input)="onTextualPropertyChange('label', $event)"
-  type="text"
-/>
-Placeholder
-<input
-  title="field placeholder"
-  [value]="value.placeholder || ''"
-  (input)="onTextualPropertyChange('placeholder', $event)"
-  type="text"
-/>
-<br />
-<textarea
-  placeholder="Enter prompt to generate options"
-  title="generate options prompt"
-  type="text"
-  rows="3"
-  [(ngModel)]="generateOptionsPrompt"
-></textarea>
+<div class="field-container">
+  <div class="field-type-toggle">{{ value.type }}</div>
+  <div class="field-property-input-container">
+    <label>Label</label>
+    <input
+      title="field label"
+      [value]="value.label"
+      (input)="onTextualPropertyChange('label', $event)"
+      type="text"
+    />
+  </div>
+  <div class="field-property-input-container">
+    <label>Placeholder</label>
+    <input
+      title="field placeholder"
+      [value]="value.placeholder || ''"
+      (input)="onTextualPropertyChange('placeholder', $event)"
+      type="text"
+    />
+  </div>
+</div>
 
-<button (click)="onGenerateOptionsClick()">generate</button>
-<br />
-<div *ngFor="let option of value.options; index as i; trackBy: optionTrackBy">
-  <input
-    type="text"
-    (input)="onOptionPropertyChange('label', i, $event)"
-    title="option label editor"
-    [value]="option.label"
-  />
-  <input
-    type="text"
-    (input)="onOptionPropertyChange('value', i, $event)"
-    title="option value editor"
-    [value]="option.value"
-  />
-  <br />
-  <br />
+<div class="select-options-container">
+  <div class="prompt-section">
+    <textarea
+      placeholder="Enter prompt to generate options"
+      title="generate options prompt"
+      type="text"
+      rows="1"
+      [(ngModel)]="generateOptionsPrompt"
+    ></textarea>
+
+    <div class="button-group">
+      <button
+        type="button"
+        class="button primary"
+        (click)="onGenerateOptionsClick()"
+      >
+        Generate options
+      </button>
+    </div>
+  </div>
+  <div
+    class="field-container"
+    *ngFor="let option of value.options; index as i; trackBy: optionTrackBy"
+  >
+    <div class="field-type-toggle">OPTION</div>
+
+    <div class="field-property-input-container">
+      <label>Label</label>
+      <input
+        type="text"
+        (input)="onOptionPropertyChange('label', i, $event)"
+        title="option label editor"
+        [value]="option.label"
+      />
+    </div>
+    <div class="field-property-input-container">
+      <label>Value</label>
+      <input
+        type="text"
+        (input)="onOptionPropertyChange('value', i, $event)"
+        title="option value editor"
+        [value]="option.value"
+      />
+    </div>
+  </div>
 </div>

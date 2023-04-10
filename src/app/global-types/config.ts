@@ -24,6 +24,7 @@ export type FormField =
 export interface BaseFormField {
   id: string;
   label: string;
+  type: FormFields;
   // /**
   //  * string since it's only used in the preview and output
   //  */

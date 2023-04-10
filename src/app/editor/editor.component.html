@@ -12,17 +12,25 @@
           placeholder="Enter prompt to generate fields"
         ></textarea>
         <div class="button-group">
-          <button (click)="onGeneratePromptClick()" class="button">
-            Load example
+          <button
+            type="button"
+            (click)="onGeneratePromptClick()"
+            class="button"
+          >
+            Try an example
           </button>
-          <button (click)="onGeneratePromptClick()" class="button primary">
+          <button
+            type="button"
+            (click)="onGeneratePromptClick()"
+            class="button primary"
+          >
             Generate Fields
           </button>
         </div>
       </div>
-      <br />
-      <fl-style-editor></fl-style-editor>
+      <div class="divider"></div>
       <fl-field-editor></fl-field-editor>
+      <fl-style-editor></fl-style-editor>
     </div>
   </div>
   <div *ngIf="previewHtml$ | async as previewHtml">

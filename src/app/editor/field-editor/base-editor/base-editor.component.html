@@ -1,13 +1,22 @@
-<input
-  title="field label"
-  [value]="value.label"
-  (input)="onTextualPropertyChange('label', $event)"
-  type="text"
-/>
-Placeholder
-<input
-  title="field placeholder"
-  [value]="value.placeholder || ''"
-  (input)="onTextualPropertyChange('placeholder', $event)"
-  type="text"
-/>
+<div class="field-container">
+  <div class="field-type-toggle">{{ value.type }}</div>
+
+  <div class="field-property-input-container">
+    <label>Label</label>
+    <input
+      title="field label"
+      [value]="value.label"
+      (input)="onTextualPropertyChange('label', $event)"
+      type="text"
+    />
+  </div>
+  <div class="field-property-input-container">
+    <label>Placeholder</label>
+    <input
+      title="field placeholder"
+      [value]="value.placeholder || ''"
+      (input)="onTextualPropertyChange('placeholder', $event)"
+      type="text"
+    />
+  </div>
+</div>
