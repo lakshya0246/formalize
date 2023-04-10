@@ -35,3 +35,16 @@
     color: white;
   }
 }
+.interactive-preview-container {
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+
+  iframe {
+    background: white;
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
+    padding: 12px;
+  }
+}

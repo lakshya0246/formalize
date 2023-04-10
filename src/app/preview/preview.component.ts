@@ -12,7 +12,7 @@ import { convertToHTML } from '../conversion-utilities/html';
 })
 export class PreviewComponent {
   previewTabs: PreviewTab[] = ['preview', 'code'];
-  activePreviewTab: PreviewTab = 'code';
+  activePreviewTab: PreviewTab = 'preview';
   previewHtml$ = this.editorService.formConfig$.pipe(
     debounceTime(500),
     map((formConfig) => {

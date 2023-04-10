@@ -12,8 +12,14 @@
     </div>
     <div
       *ngIf="activePreviewTab === 'preview'"
-      [innerHTML]="previewHtml.sanitized"
-    ></div>
+      class="interactive-preview-container"
+    >
+      <iframe
+        frameBorder="0"
+        title="live preview "
+        [srcdoc]="previewHtml.sanitized"
+      ></iframe>
+    </div>
     <fl-code-preview
       *ngIf="activePreviewTab === 'code'"
       [code]="previewHtml.raw"
