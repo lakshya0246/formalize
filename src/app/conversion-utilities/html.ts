@@ -33,8 +33,11 @@ export function convertToHTML(config: FormConfig): string {
   )}</div>`;
 
   const stylesHtml = `<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+    
     * {
       box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
     }
 
     form .${CSS_CLASSES.INPUT_CONTAINER} {
