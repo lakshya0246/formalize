@@ -64,13 +64,17 @@ export function convertToHTML(config: FormConfig): string {
       flex-direction:column;
     }
     .${CSS_CLASSES.BUTTON_CONTAINER} > *{
-      margin-top: 8px;
+      margin-top: 12px;
     }
     .${CSS_CLASSES.BUTTON_BASE}{
         cursor: pointer;
         appearance: none;
         outline: none;
         border: hidden;
+        line-height: 100%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
     }
 
     
