@@ -14,7 +14,7 @@ export class PreviewComponent {
   previewTabs: PreviewTab[] = ['preview', 'code'];
   activePreviewTab: PreviewTab = 'preview';
   previewHtml$ = this.editorService.formConfig$.pipe(
-    debounceTime(500),
+    debounceTime(300),
     map((formConfig) => {
       const raw = convertToHTML(formConfig);
       return {
