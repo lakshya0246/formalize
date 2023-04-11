@@ -1,6 +1,20 @@
 <ng-container *ngIf="editorService.formConfig$ | async as formConfig">
   <div class="section-heading">Themes</div>
-  <div class="section-container"></div>
+  <div class="section-container">
+    <div class="property-input-grid">
+      <div class="input-container">
+        <label>Global border radius</label>
+        <input
+          [value]="formConfig.styles.borderRadius"
+          type="text"
+          name="border-radius"
+          flRestrictInputTo="number"
+          title="border radius"
+          (safeChange)="onBorderRadiusChange($event)"
+        />
+      </div>
+    </div>
+  </div>
 
   <div class="section-heading">Input Styles</div>
   <div class="section-container">

@@ -42,6 +42,10 @@ export const processCommand = new CommandBuilder()
       value: ValueOfButtonStyles;
     };
   }>()
+  .appendCommand<{
+    type: EditorCommands.UPDATE_GLOBAL_BORDER_RADIUS;
+    borderRadius: number;
+  }>()
   .buildCommandProcessor<FormConfig>((state, command) => {
     switch (command.type) {
       case EditorCommands.ADD_FIELD: {
@@ -49,6 +53,10 @@ export const processCommand = new CommandBuilder()
       }
       case EditorCommands.UPDATE_FIELD: {
         state.fields[command.payload.fieldIndex] = command.payload.field;
+        return state;
+      }
+      case EditorCommands.UPDATE_GLOBAL_BORDER_RADIUS: {
+        state.styles.borderRadius = command.borderRadius;
         return state;
       }
       case EditorCommands.UPDATE_INPUT_STYLE_FIELD_VALUE: {

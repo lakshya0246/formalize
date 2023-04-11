@@ -1,3 +1,4 @@
+import { BUTTON_STATES, INPUT_STATES } from '../editor/editor.constants';
 import {
   ButtonType,
   FormConfig,
@@ -5,9 +6,10 @@ import {
   FormFields,
 } from '../global-types/config';
 import {
-  SpacingProperty,
   FormStyles,
+  KeyOfInputStylesWithState,
   NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP,
+  SpacingProperty,
 } from '../global-types/styles';
 
 const CSS_CLASSES = {
@@ -34,7 +36,7 @@ export function convertToHTML(config: FormConfig): string {
 
   const stylesHtml = `<style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-    
+
     * {
       box-sizing: border-box;
       font-family: 'Roboto', sans-serif;
@@ -46,20 +48,36 @@ export function convertToHTML(config: FormConfig): string {
       flex-direction: column;
     }
     
-    form .${CSS_CLASSES.INPUT_CONTAINER} label {
+    .${CSS_CLASSES.INPUT_CONTAINER} label {
       margin-bottom: 4px;
     }
-    
-    .${CSS_CLASSES.INPUT_CONTAINER} > input,
-    .${CSS_CLASSES.INPUT_CONTAINER} > select {
-      ${getStandardInputCSSProperties(config.styles.input.default)};
-      border-radius: ${config.styles.borderRadius}px;
+
+    input, select {
+      cursor: pointer;
+      background: white;
+      outline: none;
+      border-style: solid;
     }
 
-    ${getNonStandardInputCSSRules(
-      config.styles.input,
-      `.${CSS_CLASSES.INPUT_CONTAINER}`
-    )}
+    .${CSS_CLASSES.BUTTON_CONTAINER}{
+      display: flex;
+      flex-direction:column;
+    }
+    .${CSS_CLASSES.BUTTON_CONTAINER} > *{
+      margin-top: 8px;
+    }
+    .${CSS_CLASSES.BUTTON_BASE}{
+        cursor: pointer;
+        appearance: none;
+        outline: none;
+        border: hidden;
+    }
+
+    
+    ${getInputCSS(config)}
+    ${getButtonCSS(config)}
+
+  
   </style>`;
 
   return `
@@ -82,6 +100,51 @@ function getButtonHtml(button: ButtonType): string {
   }
 }
 
+function getButtonCSS(config: FormConfig) {
+  const css = BUTTON_STATES.reduce((css, state) => {
+    const stateSelector = state === 'default' ? '' : `:${state}`;
+    // TODO: Add support for n number of buttons
+    return (
+      css +
+      `
+    .${CSS_CLASSES.BUTTON_BASE}${stateSelector}{
+      ${getStandardCSSProperties(config.styles.buttons[1][state])}
+      border-radius: ${config.styles.borderRadius}px;
+    }
+    .${CSS_CLASSES.BUTTON_BASE}.${CSS_CLASSES.BUTTON_PRIMARY}${stateSelector}{
+      ${getStandardCSSProperties(config.styles.buttons[0][state])}
+      border-radius: ${config.styles.borderRadius}px;
+    }
+`
+    );
+  }, '');
+  return css;
+}
+
+function getInputCSS(config: FormConfig) {
+  const css = INPUT_STATES.reduce((css, state) => {
+    const stateSelector = state === 'default' ? '' : `:${state}`;
+    return (
+      css +
+      `.${CSS_CLASSES.INPUT_CONTAINER} > input${stateSelector},
+    .${CSS_CLASSES.INPUT_CONTAINER} > select${stateSelector} {
+      ${getStandardCSSProperties(config.styles.input[state])};
+      border-radius: ${config.styles.borderRadius}px;
+    }
+    .${CSS_CLASSES.INPUT_CONTAINER} > select${stateSelector} {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    ${getNonStandardCSSRules(
+      config.styles.input,
+      `.${CSS_CLASSES.INPUT_CONTAINER}${stateSelector}`,
+      state
+    )}
+  `
+    );
+  }, '');
+  return css;
+}
 /**
  * @param formField
  * @returns appropriate html for `field.type` default is input of type `text`
@@ -112,7 +175,7 @@ function getInputHtml(formField: FormField): string {
 }
 
 // TODO: Make this function congruent with the `getNonStandardInputCSSRules`
-function getStandardInputCSSProperties(styles: object): string {
+function getStandardCSSProperties(styles: object): string {
   const css = Object.entries(styles).reduce(
     (stringifiedCSS, [propertyKey, propertyValue]) => {
       const sanitizedPropertyKey = sanitizePropertyKey(propertyKey);
@@ -129,12 +192,13 @@ function getStandardInputCSSProperties(styles: object): string {
   return css;
 }
 
-function getNonStandardInputCSSRules(
+function getNonStandardCSSRules(
   styles: FormStyles['input'],
-  selector: string
+  selector: string,
+  state: KeyOfInputStylesWithState
 ): string {
   const rules: Record<string, string> = {};
-  Object.entries(styles.default).forEach(([propertyKey, propertyValue]) => {
+  Object.entries(styles[state]).forEach(([propertyKey, propertyValue]) => {
     if (isNonStandardPropertyKey(propertyKey)) {
       const nsSelector = (NON_STANDARD_PROPERTY_KEY_SELECTOR_MAP as any)[
         propertyKey
@@ -142,7 +206,7 @@ function getNonStandardInputCSSRules(
       if (!rules[nsSelector]) {
         rules[nsSelector] = '';
       }
-      rules[nsSelector] = getStandardInputCSSProperties(propertyValue);
+      rules[nsSelector] = getStandardCSSProperties(propertyValue);
     }
   }, '');
 

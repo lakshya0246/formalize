@@ -20,7 +20,6 @@ export interface InputStylesWithState<T = InputStyles> {
   hover: T;
   focus: T;
   invalid: T;
-  valid: T;
 }
 
 export interface ButtonStylesWithState<T = ButtonStyles> {

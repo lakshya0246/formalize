@@ -33,6 +33,13 @@ export class StyleEditorComponent {
     return this.activeButtonTabs[buttonIndex] || 'default';
   }
 
+  onBorderRadiusChange(event: string) {
+    this.editorService.processCommand({
+      type: EditorCommands.UPDATE_GLOBAL_BORDER_RADIUS,
+      borderRadius: +event,
+    });
+  }
+
   // TODO: Fix types
   onUnsafeButtonValueChange(propertyKey: any, value: any, buttonIndex: number) {
     this.editorService.processCommand({

@@ -9,7 +9,6 @@ export const INPUT_STATES: Array<KeyOfInputStylesWithState> = [
   'default',
   'focus',
   'hover',
-  'valid',
   'invalid',
 ];
 

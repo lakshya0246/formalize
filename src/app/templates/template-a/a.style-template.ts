@@ -167,23 +167,5 @@ export const STYLE_TEMPLATE_A: FormStyles = {
         color: '#CCCCCC',
       },
     },
-    valid: {
-      width: '100%',
-      backgroundColor: '#FFFFFF',
-      color: '#000000',
-      borderWidth: 1,
-      borderColor: '#66FF66',
-      fontSize: 14,
-      height: 30,
-      padding: getDefaultPadding(),
-      nsLabel: {
-        fontSize: 14,
-        color: '#000000',
-      },
-      nsPlaceholder: {
-        fontSize: 14,
-        color: '#CCCCCC',
-      },
-    },
   },
 };
