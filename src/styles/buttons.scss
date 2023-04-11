@@ -24,7 +24,9 @@
   text-transform: uppercase;
   color: var(--color-primary);
   background: var(--color-primary-a05);
-
+  &:disabled {
+    opacity: 0.6;
+  }
   &.icon-leading {
     & > * {
       padding-left: 8px;

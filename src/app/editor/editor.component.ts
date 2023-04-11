@@ -10,6 +10,7 @@ import { EditorService } from './editor.service';
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent {
+  isGenerating = false;
   generatorPrompt: string = '';
 
   constructor(
@@ -19,6 +20,7 @@ export class EditorComponent {
 
   onGeneratePromptClick() {
     if (Boolean(this.generatorPrompt)) {
+      this.isGenerating = true;
       this.generatorService
         .generateFormConfig(this.generatorPrompt)
         .then((response) => {
@@ -30,7 +32,8 @@ export class EditorComponent {
               fields: response,
             });
           }
-        });
+        })
+        .finally(() => (this.isGenerating = false));
     }
   }
 }

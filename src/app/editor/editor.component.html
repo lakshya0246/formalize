@@ -14,6 +14,7 @@
         Try an example
       </button>
       <button
+        [showButtonLoader]="isGenerating"
         type="button"
         (click)="onGeneratePromptClick()"
         class="button primary"

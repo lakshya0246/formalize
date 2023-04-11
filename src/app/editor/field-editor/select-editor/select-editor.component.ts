@@ -13,6 +13,7 @@ import { FailureResponse } from 'src/app/generator/generator.types';
   ],
 })
 export class SelectEditorComponent extends BaseEditorComponent<SelectField> {
+  isGenerating = false;
   generateOptionsPrompt: string = '';
   constructor(private generatorService: GeneratorService) {
     super();
@@ -23,18 +24,22 @@ export class SelectEditorComponent extends BaseEditorComponent<SelectField> {
   }
 
   onGenerateOptionsClick() {
-    this.generatorService
-      .generateSelectOptions(this.generateOptionsPrompt)
-      .then((response) => {
-        if (response instanceof FailureResponse) {
-          console.log(response.getHumanizedErrorMessage());
-        } else {
-          this.valueChange.emit({
-            ...this.value,
-            options: response,
-          });
-        }
-      });
+    if (this.generateOptionsPrompt) {
+      this.isGenerating = true;
+      this.generatorService
+        .generateSelectOptions(this.generateOptionsPrompt)
+        .then((response) => {
+          if (response instanceof FailureResponse) {
+            console.log(response.getHumanizedErrorMessage());
+          } else {
+            this.valueChange.emit({
+              ...this.value,
+              options: response,
+            });
+          }
+        })
+        .finally(() => (this.isGenerating = false));
+    }
   }
 
   onOptionPropertyChange(

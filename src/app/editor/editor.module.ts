@@ -14,6 +14,7 @@ import { SingleStyleEditorComponent } from './style-editor/single-style-editor/s
 import { SpacingEditorComponent } from './style-editor/spacing-editor/spacing-editor.component';
 import { StyleEditorComponent } from './style-editor/style-editor.component';
 import { UnitEditorComponent } from './style-editor/unit-editor/unit-editor.component';
+import { ButtonLoaderDirective } from './button-loader.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UnitEditorComponent } from './style-editor/unit-editor/unit-editor.comp
     FieldEditorDirective,
     BaseEditorComponent,
     SelectEditorComponent,
+    ButtonLoaderDirective,
   ],
   imports: [CommonModule, FormsModule],
   exports: [EditorComponent],
