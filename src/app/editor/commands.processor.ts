@@ -7,7 +7,6 @@ import {
   ValueOfButtonStyles,
 } from '../global-types/styles';
 import { CommandBuilder, EditorCommands } from './commands.types';
-import {} from './editor.types';
 
 /**
  * Shies away from deep cloning to avoid unnecessary re-renders
