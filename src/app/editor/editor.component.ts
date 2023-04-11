@@ -20,6 +20,9 @@ export class EditorComponent {
     private snackBar: MatSnackBar
   ) {}
 
+  onTryAnExampleClick() {
+    this.generatorPrompt = `Name, email, and age groups`;
+  }
   onGeneratePromptClick() {
     if (Boolean(this.generatorPrompt)) {
       this.isGenerating = true;
