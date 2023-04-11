@@ -13,6 +13,7 @@ import { Editor } from '../../editor.types';
 export class BaseEditorComponent<T extends BaseFormField> implements Editor<T> {
   @Input() value!: T;
   @Output() valueChange = new EventEmitter<T>();
+  @Output() delete = new EventEmitter();
 
   onTextualPropertyChange(key: keyof T, event: Event) {
     this.valueChange.emit({

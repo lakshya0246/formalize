@@ -26,8 +26,13 @@ export class FieldEditorComponent {
       payload: { field, fieldIndex },
     });
   }
-
-  onAddFieldClick(type: FormFields) {
+  onDeleteField(fieldIndex: number) {
+    this.editorService.processCommand({
+      type: EditorCommands.REMOVE_FIELD,
+      fieldIndex,
+    });
+  }
+  onAddField(type: FormFields) {
     let newField: Partial<FormField> = {
       id: uuid(),
       label: type.toLowerCase(),

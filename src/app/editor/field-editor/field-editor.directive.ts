@@ -28,7 +28,8 @@ import { SelectEditorComponent } from './select-editor/select-editor.component';
 export class FieldEditorDirective implements OnInit, OnDestroy, OnChanges {
   @Input('flFieldEditor') field!: FormField;
   @Output('valueChange') valueChanges = new EventEmitter<FormField>();
-  valueChangeSubscription: Subscription | undefined;
+  @Output('delete') delete = new EventEmitter();
+  subscriptions: Subscription | undefined;
   componentRef!: ComponentRef<BaseEditorComponent<any>>;
   constructor(public viewContainerRef: ViewContainerRef) {}
 
@@ -40,7 +41,7 @@ export class FieldEditorDirective implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy(): void {
-    this.valueChangeSubscription?.unsubscribe?.();
+    this.subscriptions?.unsubscribe?.();
   }
 
   ngOnInit(): void {
@@ -91,10 +92,15 @@ export class FieldEditorDirective implements OnInit, OnDestroy, OnChanges {
           }
           break;
       }
-      this.valueChangeSubscription =
+      const valueChangeSubscription =
         this.componentRef.instance.valueChange.subscribe((value) =>
           this.valueChanges.emit(value)
         );
+      const deleteSubscription = this.componentRef.instance.delete.subscribe(
+        () => this.delete.emit()
+      );
+      this.subscriptions?.add(valueChangeSubscription);
+      this.subscriptions?.add(deleteSubscription);
     }
   }
 }

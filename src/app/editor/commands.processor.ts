@@ -22,6 +22,10 @@ export const processCommand = new CommandBuilder()
     payload: { fieldIndex: number; field: FormField };
   }>()
   .appendCommand<{
+    type: EditorCommands.REMOVE_FIELD;
+    fieldIndex: number;
+  }>()
+  .appendCommand<{
     type: EditorCommands.UPDATE_INPUT_STYLE_FIELD_VALUE;
     payload: {
       inputState: KeyOfInputStylesWithState;
@@ -50,6 +54,10 @@ export const processCommand = new CommandBuilder()
     switch (command.type) {
       case EditorCommands.ADD_FIELD: {
         return { ...state, fields: [...state.fields, command.newField] };
+      }
+      case EditorCommands.REMOVE_FIELD: {
+        state.fields.splice(command.fieldIndex, 1);
+        return state;
       }
       case EditorCommands.UPDATE_FIELD: {
         state.fields[command.payload.fieldIndex] = command.payload.field;

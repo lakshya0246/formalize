@@ -16,7 +16,10 @@ import { StyleEditorComponent } from './style-editor/style-editor.component';
 import { UnitEditorComponent } from './style-editor/unit-editor/unit-editor.component';
 import { ButtonLoaderDirective } from './button-loader.directive';
 import { CdkMenuModule } from '@angular/cdk/menu';
+import { FeatherModule } from 'angular-feather';
+import { PlusCircle, Trash2 } from 'angular-feather/icons';
 
+const FEATHER_ICONS = { PlusCircle, Trash2 };
 @NgModule({
   declarations: [
     EditorComponent,
@@ -32,7 +35,12 @@ import { CdkMenuModule } from '@angular/cdk/menu';
     SelectEditorComponent,
     ButtonLoaderDirective,
   ],
-  imports: [CommonModule, FormsModule, CdkMenuModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CdkMenuModule,
+    FeatherModule.pick(FEATHER_ICONS),
+  ],
   exports: [EditorComponent],
   providers: [EditorService, EditorConstants],
 })

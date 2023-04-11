@@ -57,4 +57,20 @@ export class SelectEditorComponent extends BaseEditorComponent<SelectField> {
       options: newOptions,
     });
   }
+
+  onDeleteOption(optionIndex: number) {
+    this.value.options.splice(optionIndex, 1);
+    this.valueChange.emit({
+      ...this.value,
+      options: [...this.value.options],
+    });
+  }
+
+  onAddOption() {
+    const newOption: SelectOption = { label: 'label', value: '0' };
+    this.valueChange.emit({
+      ...this.value,
+      options: [...this.value.options, newOption],
+    });
+  }
 }

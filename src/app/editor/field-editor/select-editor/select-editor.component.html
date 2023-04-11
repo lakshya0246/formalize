@@ -18,6 +18,9 @@
       type="text"
     />
   </div>
+  <div class="action-container">
+    <i-feather (click)="delete.emit()" name="trash-2"></i-feather>
+  </div>
 </div>
 
 <div class="select-options-container">
@@ -31,6 +34,11 @@
     ></textarea>
 
     <div class="button-group">
+      <button type="button" class="button icon-leading" (click)="onAddOption()">
+        <i-feather name="plus-circle"></i-feather>
+
+        Add option manually
+      </button>
       <button
         [showButtonLoader]="isGenerating"
         type="button"
@@ -64,6 +72,9 @@
         title="option value editor"
         [value]="option.value"
       />
+    </div>
+    <div class="action-container">
+      <i-feather (click)="onDeleteOption(i)" name="trash-2"></i-feather>
     </div>
   </div>
 </div>

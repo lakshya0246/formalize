@@ -6,9 +6,16 @@
     <ng-container
       [flFieldEditor]="field"
       (valueChange)="onValueChanges($event, i)"
+      (delete)="onDeleteField(i)"
     ></ng-container>
   </div>
-  <button [cdkMenuTriggerFor]="fieldTypeMenu" type="button" class="button">
+  <button
+    [cdkMenuTriggerFor]="fieldTypeMenu"
+    type="button"
+    class="button icon-leading add-field-button"
+  >
+    <i-feather name="plus-circle"></i-feather>
+
     Add field
   </button>
 </ng-container>
@@ -18,7 +25,7 @@
       class="menu-item"
       cdkMenuItem
       *ngFor="let field of editorConstants.FORM_FIELDS | keyvalue"
-      (click)="onAddFieldClick(field.value)"
+      (click)="onAddField(field.value)"
     >
       {{ field.key | titlecase }}
     </div>
