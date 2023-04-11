@@ -1,9 +1,14 @@
-import { FormField, FormFields } from '../global-types/config';
+import { FormConfig } from '../global-types/config';
 import {
   InputStyles,
   KeyOfButtonStylesWithState,
   KeyOfInputStylesWithState,
 } from '../global-types/styles';
+import {
+  CONFIG_TEMPLATE_A,
+  CONFIG_TEMPLATE_B,
+  CONFIG_TEMPLATE_C,
+} from '../templates';
 import { StyleInputs } from './editor.types';
 
 export const INPUT_STATES: Array<KeyOfInputStylesWithState> = [
@@ -34,3 +39,9 @@ export const STYLE_FIELD_INPUT_MAP: Record<
   nsLabel: false,
   nsPlaceholder: false,
 };
+
+export const THEMES: FormConfig[] = [
+  CONFIG_TEMPLATE_A,
+  CONFIG_TEMPLATE_B,
+  CONFIG_TEMPLATE_C,
+];

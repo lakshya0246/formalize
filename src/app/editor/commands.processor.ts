@@ -50,8 +50,15 @@ export const processCommand = new CommandBuilder()
     type: EditorCommands.UPDATE_GLOBAL_BORDER_RADIUS;
     borderRadius: number;
   }>()
+  .appendCommand<{
+    type: EditorCommands.CHANGE_CONFIG;
+    newConfig: FormConfig;
+  }>()
   .buildCommandProcessor<FormConfig>((state, command) => {
     switch (command.type) {
+      case EditorCommands.CHANGE_CONFIG: {
+        return command.newConfig;
+      }
       case EditorCommands.ADD_FIELD: {
         return { ...state, fields: [...state.fields, command.newField] };
       }

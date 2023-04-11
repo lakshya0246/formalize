@@ -14,6 +14,7 @@ import { StyleEditorProperty } from '../editor.types';
   styleUrls: ['./style-editor.component.scss'],
 })
 export class StyleEditorComponent {
+  activeThemeIndex = 0;
   activeTab: KeyOfInputStylesWithState = 'default';
   activeButtonTabs: Record<number, KeyOfButtonStylesWithState> = {};
 
@@ -32,7 +33,18 @@ export class StyleEditorComponent {
   getActiveButtonTab(buttonIndex: number) {
     return this.activeButtonTabs[buttonIndex] || 'default';
   }
-
+  onChangeTheme(index: number) {
+    if (
+      index !== this.activeThemeIndex &&
+      Boolean(this.editorConstants.THEMES[index])
+    ) {
+      this.editorService.processCommand({
+        type: EditorCommands.CHANGE_CONFIG,
+        newConfig: this.editorConstants.THEMES[index],
+      });
+      this.activeThemeIndex = index;
+    }
+  }
   onBorderRadiusChange(event: string) {
     this.editorService.processCommand({
       type: EditorCommands.UPDATE_GLOBAL_BORDER_RADIUS,

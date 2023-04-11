@@ -1,6 +1,17 @@
 <ng-container *ngIf="editorService.formConfig$ | async as formConfig">
   <div class="section-heading">Themes</div>
   <div class="section-container">
+    <div class="theme-selector-container">
+      <div
+        *ngFor="let theme of editorConstants.THEMES; index as i"
+        class="theme-selector"
+        (click)="onChangeTheme(i)"
+        [class.active]="activeThemeIndex === i"
+      >
+        <img src="assets/theme_{{ i }}.svg" alt="theme 1" />
+      </div>
+    </div>
+    <div class="divider"></div>
     <div class="property-input-grid">
       <div class="input-container">
         <label>Global border radius</label>

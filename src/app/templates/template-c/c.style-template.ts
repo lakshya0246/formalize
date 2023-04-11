@@ -4,8 +4,8 @@ function getDefaultPadding(): SpacingProperty {
   return new SpacingProperty(12);
 }
 
-export const STYLE_TEMPLATE_A: FormStyles = {
-  borderRadius: 50,
+export const STYLE_TEMPLATE_C: FormStyles = {
+  borderRadius: 6,
   horizontalGap: 10,
   verticalGap: 20,
   buttons: [

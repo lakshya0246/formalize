@@ -56,3 +56,28 @@
     margin: 16px;
   }
 }
+
+.theme-selector-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  padding: 16px;
+  gap: 12px;
+}
+
+.theme-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 8px;
+  padding: 32px 16px 16px 16px;
+  border: 2px solid var(--color-primary-a05);
+  cursor: pointer;
+  &:hover {
+    border-color: var(--color-primary-a10);
+  }
+
+  &.active {
+    border-color: var(--color-primary);
+  }
+}
