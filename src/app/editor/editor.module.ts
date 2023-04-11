@@ -15,6 +15,7 @@ import { SpacingEditorComponent } from './style-editor/spacing-editor/spacing-ed
 import { StyleEditorComponent } from './style-editor/style-editor.component';
 import { UnitEditorComponent } from './style-editor/unit-editor/unit-editor.component';
 import { ButtonLoaderDirective } from './button-loader.directive';
+import { CdkMenuModule } from '@angular/cdk/menu';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { ButtonLoaderDirective } from './button-loader.directive';
     SelectEditorComponent,
     ButtonLoaderDirective,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CdkMenuModule],
   exports: [EditorComponent],
   providers: [EditorService, EditorConstants],
 })

@@ -7,3 +7,27 @@
 .field-editor-wrapper {
   margin-bottom: 8px;
 }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 1px 1px 12px rgba($color: #000000, $alpha: 0.25);
+  .menu-item {
+    border-top: 1px solid var(--color-primary-a05);
+  }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  cursor: pointer;
+  color: var(--color-primary);
+  &:hover {
+    background: var(--color-primary-a05);
+  }
+}

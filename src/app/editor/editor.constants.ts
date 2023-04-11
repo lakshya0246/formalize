@@ -1,3 +1,4 @@
+import { FormField, FormFields } from '../global-types/config';
 import {
   InputStyles,
   KeyOfButtonStylesWithState,
@@ -18,7 +19,6 @@ export const BUTTON_STATES: Array<KeyOfButtonStylesWithState> = [
   'focus',
   'active',
 ];
-
 export const STYLE_FIELD_INPUT_MAP: Record<
   keyof InputStyles,
   StyleInputs | false

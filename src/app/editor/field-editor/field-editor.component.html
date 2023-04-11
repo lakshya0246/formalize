@@ -8,4 +8,19 @@
       (valueChange)="onValueChanges($event, i)"
     ></ng-container>
   </div>
+  <button [cdkMenuTriggerFor]="fieldTypeMenu" type="button" class="button">
+    Add field
+  </button>
 </ng-container>
+<ng-template #fieldTypeMenu>
+  <div class="menu" cdkMenu>
+    <div
+      class="menu-item"
+      cdkMenuItem
+      *ngFor="let field of editorConstants.FORM_FIELDS | keyvalue"
+      (click)="onAddFieldClick(field.value)"
+    >
+      {{ field.key | titlecase }}
+    </div>
+  </div>
+</ng-template>
