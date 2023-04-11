@@ -43,7 +43,7 @@ export function convertToHTML(config: FormConfig): string {
     }
 
     form .${CSS_CLASSES.INPUT_CONTAINER} {
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       display: flex;
       flex-direction: column;
     }
