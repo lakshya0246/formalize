@@ -3,6 +3,7 @@ import { GeneratorService } from '../generator/generator.service';
 import { FailureResponse } from '../generator/generator.types';
 import { EditorCommands } from './commands.types';
 import { EditorService } from './editor.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'fl-editor',
@@ -15,7 +16,8 @@ export class EditorComponent {
 
   constructor(
     public editorService: EditorService,
-    private generatorService: GeneratorService
+    private generatorService: GeneratorService,
+    private snackBar: MatSnackBar
   ) {}
 
   onGeneratePromptClick() {
@@ -25,7 +27,7 @@ export class EditorComponent {
         .generateFormConfig(this.generatorPrompt)
         .then((response) => {
           if (response instanceof FailureResponse) {
-            console.log(response.getHumanizedErrorMessage());
+            this.snackBar.open(response.getHumanizedErrorMessage(), 'DISMISS');
           } else {
             this.editorService.processCommand({
               type: EditorCommands.REPLACE_FIELDS,

@@ -3,6 +3,7 @@ import { BaseEditorComponent } from '../base-editor/base-editor.component';
 import { SelectField, SelectOption } from 'src/app/global-types/config';
 import { GeneratorService } from 'src/app/generator/generator.service';
 import { FailureResponse } from 'src/app/generator/generator.types';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'fl-select-editor',
@@ -15,7 +16,10 @@ import { FailureResponse } from 'src/app/generator/generator.types';
 export class SelectEditorComponent extends BaseEditorComponent<SelectField> {
   isGenerating = false;
   generateOptionsPrompt: string = '';
-  constructor(private generatorService: GeneratorService) {
+  constructor(
+    private generatorService: GeneratorService,
+    private snackBar: MatSnackBar
+  ) {
     super();
   }
 
@@ -30,7 +34,7 @@ export class SelectEditorComponent extends BaseEditorComponent<SelectField> {
         .generateSelectOptions(this.generateOptionsPrompt)
         .then((response) => {
           if (response instanceof FailureResponse) {
-            console.log(response.getHumanizedErrorMessage());
+            this.snackBar.open(response.getHumanizedErrorMessage(), 'DISMISS');
           } else {
             this.valueChange.emit({
               ...this.value,
